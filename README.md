@@ -2,6 +2,7 @@
 # *Resolución Práctica Microservicios*
 * **Nombre**: Eva Temes Moya 
 * **Correo**: etm00016@red.ujaen.es
+* **Trello**: https://trello.com/b/PM5WVvmT/practica3
 # *Plantilla Práctica Microservicios*: descripción de la aplicación
 
 Este código que se presenta aquí corresponde a la plantilla para realizar un desarrollo basado en microservicios para las prácticas de Desarrollo Ágil, para el curso 2022-2023.
