@@ -27,6 +27,9 @@ describe('Servidor PLANTILLA:', () => {
           assert(res.body.hasOwnProperty('mensaje'));
           assert(res.body.mensaje === "Microservicio MS Plantilla: home");
             assert(res.body.autor === "Eva");
+            assert(res.body.email === "etm00016@red.ujaen.es");
+            assert(res.body.fecha === "28/03/2023");
+
 
         })
         .end((error) => { error ? done.fail(error) : done() })
