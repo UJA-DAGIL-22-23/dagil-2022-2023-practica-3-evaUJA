@@ -15,8 +15,10 @@ Plantilla.plantillaTablaPersonas = {}
 
 // Plantilla de datosDescargados vacíos
 Plantilla.datosDescargadosNulos = {
-    mensaje: "Datos Descargados No válidos",
-    autor: "Eva Temes Moya",
+    mensaje: "Microservicio MS Plantilla: acerca de",
+    autor: "Eva",
+    email: "etm00016@red.ujaen.es",
+    fecha: "28/03/2023"
 
 }
 // Tags que voy a usar para sustituir los campos
@@ -106,8 +108,10 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
     const mensajeAMostrar = `<div>
     <p>${datosDescargados.mensaje}</p>
     <ul>
-        <li><b>Autor/a</b>: ${datosDescargados.autor}</li>
+        <li><b>Autor/a</b>: ${datosDescargados.mensaje}</li>
+        <li><b>E-mail</b>: ${datosDescargados.autor}</li>
         <li><b>E-mail</b>: ${datosDescargados.email}</li>
+        <li><b>E-mail</b>: ${datosDescargados.fecha}</li>
   
     </ul>
     </div>
@@ -120,14 +124,14 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
  * Función principal para responder al evento de elegir la opción "Home"
  */
 Plantilla.procesarHome = function () {
-    this.descargarRuta("/plantilla/", this.mostrarHome);
+    this.descargarRuta("/Quidditch/", this.mostrarHome);
 }
 
 /**
  * Función principal para responder al evento de elegir la opción "Acerca de"
  */
 Plantilla.procesarAcercaDe = function () {
-    this.descargarRuta("/plantilla/acercade", this.mostrarAcercaDe);
+    this.descargarRuta("/Quidditch/acercade", this.mostrarAcercaDe);
 }
 /**
  * Función para mostrar en pantalla todas las personas que se han recuperado de la BBDD.
@@ -166,6 +170,7 @@ Plantilla.sustituyeTags = function (plantilla, persona) {
         .replace(new RegExp(Plantilla.plantillaTags.ID, 'g'), persona.ref['@ref'].id)
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
         .replace(new RegExp(Plantilla.plantillaTags.APELLIDOS, 'g'), persona.data.apellidos)
+
 
 }
 
