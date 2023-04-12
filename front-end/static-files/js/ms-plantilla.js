@@ -20,7 +20,14 @@ Plantilla.datosDescargadosNulos = {
     email: "",
     fecha: ""
 }
-
+// Tags que voy a usar para sustituir los campos
+Plantilla.plantillaTags = {
+    "ID": "### ID ###",
+    "NOMBRE": "### NOMBRE ###",
+    "APELLIDOS": "### APELLIDOS ###",
+    "EMAIL": "### EMAIL ###",
+    "AÑO ENTRADA": "### AÑO ENTRADA ###",
+}
 // Cabecera de la tabla
 Plantilla.plantillaTablaPersonas.cabecera = `<table width="100%" class="listado-personas">
                     <thead>
@@ -34,6 +41,13 @@ Plantilla.plantillaTablaPersonas.cabecera = `<table width="100%" class="listado-
                     </thead>
                     <tbody>
     `;
+
+// Pie de la tabla
+Plantilla.plantillaTablaPersonas.pie = `        </tbody>
+             </table>
+             `;
+
+
 /**
  * Función que descarga la info MS Plantilla al llamar a una de sus rutas
  * @param {string} ruta Ruta a descargar
@@ -137,6 +151,31 @@ Plantilla.imprimeMuchasPersonas = function (vector) {
     // Borro toda la info de Article y la sustituyo por la que me interesa
     Frontend.Article.actualizar("Listado de personas", msj)
 }
+
+/**
+ * Actualiza el cuerpo de la tabla con los datos de la persona que se le pasa
+ * @param {Persona} Persona Objeto con los datos de la persona que queremos escribir en el TR
+ * @returns La plantilla del cuerpo de la tabla con los datos actualizados
+ */
+Plantilla.plantillaTablaPersonas.actualiza = function (persona) {
+    return Plantilla.sustituyeTags(this.cuerpo, persona)
+}
+
+/**
+ * Actualiza el cuerpo de la plantilla deseada con los datos de la persona que se le pasa
+ * @param {String} Plantilla Cadena conteniendo HTML en la que se desea cambiar lso campos de la plantilla por datos
+ * @param {Persona} Persona Objeto con los datos de la persona que queremos escribir en el TR
+ * @returns La plantilla del cuerpo de la tabla con los datos actualizados
+ */
+Plantilla.sustituyeTags = function (plantilla, persona) {
+    return plantilla
+        .replace(new RegExp(Plantilla.plantillaTags.ID, 'g'), persona.ref['@ref'].id)
+        .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
+        .replace(new RegExp(Plantilla.plantillaTags.APELLIDOS, 'g'), persona.data.apellidos)
+        .replace(new RegExp(Plantilla.plantillaTags.EMAIL, 'g'), persona.data.email)
+        .replace(new RegExp(Plantilla.plantillaTags["AÑO ENTRADA"], 'g'), persona.data.año_entrada)
+}
+
 /**
  * Función que recuperar todas las personas llamando al MS Personas
  * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
