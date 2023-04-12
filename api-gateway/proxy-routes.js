@@ -8,12 +8,12 @@
 
 const ROUTES = [
     {
-        url: '/plantilla',
+        url: '/Quidditch',
         proxy: {
             target: "http://localhost:8002",
             changeOrigin: true,
             pathRewrite: {
-                [`^/plantilla`]: '',
+                [`^/Quidditch`]: '',
             },
         }
     }
