@@ -16,17 +16,15 @@ Plantilla.plantillaTablaPersonas = {}
 // Plantilla de datosDescargados vacíos
 Plantilla.datosDescargadosNulos = {
     mensaje: "Datos Descargados No válidos",
-    autor: "",
-    email: "",
-    fecha: ""
+    autor: "Eva Temes Moya",
+
 }
 // Tags que voy a usar para sustituir los campos
 Plantilla.plantillaTags = {
     "ID": "### ID ###",
     "NOMBRE": "### NOMBRE ###",
     "APELLIDOS": "### APELLIDOS ###",
-    "EMAIL": "### EMAIL ###",
-    "AÑO ENTRADA": "### AÑO ENTRADA ###",
+
 }
 // Cabecera de la tabla
 Plantilla.plantillaTablaPersonas.cabecera = `<table width="100%" class="listado-personas">
@@ -34,9 +32,7 @@ Plantilla.plantillaTablaPersonas.cabecera = `<table width="100%" class="listado-
                         <th width="10%">Id</th>
                         <th width="20%">Nombre</th>
                         <th width="20%">Apellidos</th>
-                        <th width="10%">eMail</th>
-                        <th width="15%">Año contratación</th>
-                        <th width="15%">Acciones</th>
+                   
 
                     </thead>
                     <tbody>
@@ -104,9 +100,7 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
 
     // Si datos descargados NO contiene los campos mensaje, autor, o email
     if (typeof datosDescargados.mensaje === "undefined" ||
-        typeof datosDescargados.autor === "undefined" ||
-        typeof datosDescargados.email === "undefined" ||
-        typeof datosDescargados.fecha === "undefined"
+        typeof datosDescargados.autor === "undefined"
     ) datosDescargados = this.datosDescargadosNulos
 
     const mensajeAMostrar = `<div>
@@ -114,7 +108,7 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
     <ul>
         <li><b>Autor/a</b>: ${datosDescargados.autor}</li>
         <li><b>E-mail</b>: ${datosDescargados.email}</li>
-        <li><b>Fecha</b>: ${datosDescargados.fecha}</li>
+  
     </ul>
     </div>
     `;
@@ -172,8 +166,7 @@ Plantilla.sustituyeTags = function (plantilla, persona) {
         .replace(new RegExp(Plantilla.plantillaTags.ID, 'g'), persona.ref['@ref'].id)
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
         .replace(new RegExp(Plantilla.plantillaTags.APELLIDOS, 'g'), persona.data.apellidos)
-        .replace(new RegExp(Plantilla.plantillaTags.EMAIL, 'g'), persona.data.email)
-        .replace(new RegExp(Plantilla.plantillaTags["AÑO ENTRADA"], 'g'), persona.data.año_entrada)
+
 }
 
 /**
@@ -209,3 +202,17 @@ Plantilla.recupera = async function (callBackFn) {
 Plantilla.listar = function () {
     Plantilla.recupera(Plantilla.imprimeMuchasPersonas);
 }
+
+// Elemento TR que muestra los datos de una persona
+Plantilla.plantillaTablaPersonas.cuerpo = `
+    <tr title="${Plantilla.plantillaTags.ID}">
+        <td>${Plantilla.plantillaTags.ID}</td>
+        <td>${Plantilla.plantillaTags.NOMBRE}</td>
+        <td>${Plantilla.plantillaTags.APELLIDOS}</td>
+        <td>${Plantilla.plantillaTags.EMAIL}</td>
+        <td>${Plantilla.plantillaTags["AÑO ENTRADA"]}</td>
+        <td>
+                    <div><a href="javascript:Personas.mostrar('${Plantilla.plantillaTags.ID}')" class="opcion-secundaria mostrar">Mostrar</a></div>
+        </td>
+    </tr>
+    `;
