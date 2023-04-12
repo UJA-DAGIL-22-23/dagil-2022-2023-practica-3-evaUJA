@@ -26,19 +26,40 @@ Plantilla.plantillaTags = {
     "ID": "### ID ###",
     "NOMBRE": "### NOMBRE ###",
     "APELLIDOS": "### APELLIDOS ###",
+    "POSICION": "### POSICION ###",
+    "FECHADENACIMIENTO": "### FECHADENACIMIENTO ###",
+    "CASAHODWARTS": "### CASAHODWARTS ###",
+    "COPASMUNDIALES": "###COPASMUNDIALES ###",
+    "TIPOESCOBA":"###TIPOESCOBA ###"
 
 }
 // Cabecera de la tabla
 Plantilla.plantillaTablaPersonas.cabecera = `<table width="100%" class="listado-personas">
                     <thead>
                         <th width="10%">Id</th>
-                        <th width="20%">Nombre</th>
-                        <th width="20%">Apellidos</th>
+                        <th width="10%">Nombre</th>
+                        <th width="10%">Apellidos</th>
+                        <th width="10%">Posicion</th>
+                        <th width="20%">FechaDeNacimiento</th>
+                        <th width="10%">cadaHodwarts</th>
+                        <th width="20%">CopasMundiales</th>
+                         <th width="10%">TipoEscoba</th>
                    
 
                     </thead>
                     <tbody>
     `;
+
+// Cabecera de la tabla
+Plantilla.plantillaTablaPersonas.cabecera2 = `<table width="100%" class="listado-personas">
+                    <thead>
+                    
+                        <th width="100%">Nombre</th>
+   
+                    </thead>
+                    <tbody>
+    `;
+
 
 // Pie de la tabla
 Plantilla.plantillaTablaPersonas.pie = `        </tbody>
@@ -147,7 +168,19 @@ Plantilla.imprimeMuchasPersonas = function (vector) {
     msj += Plantilla.plantillaTablaPersonas.pie
 
     // Borro toda la info de Article y la sustituyo por la que me interesa
-    Frontend.Article.actualizar("Listado de personas", msj)
+    Frontend.Article.actualizar("Listado de personas con todos los datos ", msj)
+}
+
+Plantilla.imprimeMuchasPersonas2 = function (vector) {
+    // console.log(vector) // Para comprobar lo que hay en vector
+
+    // Compongo el contenido que se va a mostrar dentro de la tabla
+    let msj = Plantilla.plantillaTablaPersonas.cabecera2
+    vector.forEach(e => msj += Plantilla.plantillaTablaPersonas.actualiza2(e))
+    msj += Plantilla.plantillaTablaPersonas.pie
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Listado de personas solo con su nombre", msj)
 }
 
 /**
@@ -157,6 +190,9 @@ Plantilla.imprimeMuchasPersonas = function (vector) {
  */
 Plantilla.plantillaTablaPersonas.actualiza = function (persona) {
     return Plantilla.sustituyeTags(this.cuerpo, persona)
+}
+Plantilla.plantillaTablaPersonas.actualiza2 = function (persona) {
+    return Plantilla.sustituyeTags2(this.cuerpo2, persona)
 }
 
 /**
@@ -170,7 +206,16 @@ Plantilla.sustituyeTags = function (plantilla, persona) {
         .replace(new RegExp(Plantilla.plantillaTags.ID, 'g'), persona.ref['@ref'].id)
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
         .replace(new RegExp(Plantilla.plantillaTags.APELLIDOS, 'g'), persona.data.apellidos)
+        .replace(new RegExp(Plantilla.plantillaTags.POSICION, 'g'), persona.data.posicion)
+        .replace(new RegExp(Plantilla.plantillaTags.FECHADENACIMIENTO, 'g'), persona.data.fechaNacimiento)
+        .replace(new RegExp(Plantilla.plantillaTags.CASAHODWARTS, 'g'), persona.data.casaHogwarts)
+        .replace(new RegExp(Plantilla.plantillaTags.COPASMUNDIALES, 'g'), persona.data.copasMundiales)
+        .replace(new RegExp(Plantilla.plantillaTags.TIPOESCOBA, 'g'), persona.data.tipoEscoba)
 
+}
+Plantilla.sustituyeTags2 = function (plantilla, persona) {
+    return plantilla
+        .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
 
 }
 
@@ -208,14 +253,33 @@ Plantilla.listar = function () {
     Plantilla.recupera(Plantilla.imprimeMuchasPersonas);
 }
 
+Plantilla.listar2 = function () {
+    Plantilla.recupera(Plantilla.imprimeMuchasPersonas2);
+}
+
 // Elemento TR que muestra los datos de una persona
 Plantilla.plantillaTablaPersonas.cuerpo = `
     <tr title="${Plantilla.plantillaTags.ID}">
         <td>${Plantilla.plantillaTags.ID}</td>
         <td>${Plantilla.plantillaTags.NOMBRE}</td>
         <td>${Plantilla.plantillaTags.APELLIDOS}</td>
-        <td>${Plantilla.plantillaTags.EMAIL}</td>
-        <td>${Plantilla.plantillaTags["AÑO ENTRADA"]}</td>
+        <td>${Plantilla.plantillaTags.POSICION}</td>
+        <td>${Plantilla.plantillaTags.FECHADENACIMIENTO}</td>
+        <td>${Plantilla.plantillaTags.CASAHODWARTS}</td>
+        <td>${Plantilla.plantillaTags.COPASMUNDIALES}</td>
+        <td>${Plantilla.plantillaTags.TIPOESCOBA}</td>
+        <td>
+                    <div><a href="javascript:Personas.mostrar('${Plantilla.plantillaTags.ID}')" class="opcion-secundaria mostrar">Mostrar</a></div>
+        </td>
+    </tr>
+    `;
+
+// Elemento TR que muestra los datos de una persona
+Plantilla.plantillaTablaPersonas.cuerpo2 = `
+    <tr title="${Plantilla.plantillaTags.ID}">
+      
+        <td>${Plantilla.plantillaTags.NOMBRE}</td>
+      
         <td>
                     <div><a href="javascript:Personas.mostrar('${Plantilla.plantillaTags.ID}')" class="opcion-secundaria mostrar">Mostrar</a></div>
         </td>
