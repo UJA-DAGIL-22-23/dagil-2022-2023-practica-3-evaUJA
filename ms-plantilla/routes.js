@@ -14,9 +14,9 @@ const { callbacks } = require("./callbacks");
 /**
  * Ruta raíz: /
  */
-router.get("/", async (req, res) => {
+router.get("/", async (req, res) => { //son funciones asíncronas
     try {
-        await callbacks.home(req, res)
+        await callbacks.home(req, res) //siempre necesitan dos parámetros
     } catch (error) {
         console.log(error);
     }
@@ -46,6 +46,15 @@ router.get("/test_db", async (req, res) => {
     }
 });
 
-
+/**
+Test para comprobar que listar todos jugadores funciona
+ */
+router.get("/getTodas", async (req, res) => {
+    try {
+        await callbacks.getTodas(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
 // Exporto el módulo para poder usarlo en server
 module.exports = router;

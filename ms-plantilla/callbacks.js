@@ -104,6 +104,56 @@ const CB_OTHERS = {
 
 }
 
+
+
+/**
+ * Objeto que contiene las funciones callback para interactuar con el modelo (e.d., la BBDD)
+ */
+const CB_MODEL_SELECTS = {
+    /**
+     * Prueba de conexión a la BBDD: devuelve todas las personas que haya en la BBDD.
+     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL
+     * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
+     */
+    test_db: async (req, res) => {
+        try {
+            let personas = await client.query(
+                q.Map(
+                    q.Paginate(q.Documents(q.Collection(COLLECTION))),
+                    q.Lambda("X", q.Get(q.Var("X")))
+                )
+            )
+            CORS(res).status(200).json(personas)
+        } catch (error) {
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
+
+    /**
+     * Método para obtener todas las personas de la BBDD.
+     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL
+     * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
+     */
+    getTodas: async (req, res) => {
+        try {
+            let personas = await client.query(
+                q.Map(
+                    q.Paginate(q.Documents(q.Collection(COLLECTION))),
+                    q.Lambda("X", q.Get(q.Var("X")))
+                )
+            )
+            // console.log( personas ) // Para comprobar qué se ha devuelto en personas
+            CORS(res)
+                .status(200)
+                .json(personas)
+        } catch (error) {
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
+}
+
+
+
 // Une todos los callbacks en un solo objeto para poder exportarlos.
 // MUY IMPORTANTE: No debe haber callbacks con el mismo nombre en los distintos objetos, porque si no
 //                 el último que haya SOBREESCRIBE a todos los anteriores.

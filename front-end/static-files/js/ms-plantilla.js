@@ -10,6 +10,9 @@
 /// Creo el espacio de nombres
 let Plantilla = {};
 
+/// Plantilla para poner los datos de varias personas dentro de una tabla
+Plantilla.plantillaTablaPersonas = {}
+
 // Plantilla de datosDescargados vacíos
 Plantilla.datosDescargadosNulos = {
     mensaje: "Datos Descargados No válidos",
@@ -18,7 +21,19 @@ Plantilla.datosDescargadosNulos = {
     fecha: ""
 }
 
+// Cabecera de la tabla
+Plantilla.plantillaTablaPersonas.cabecera = `<table width="100%" class="listado-personas">
+                    <thead>
+                        <th width="10%">Id</th>
+                        <th width="20%">Nombre</th>
+                        <th width="20%">Apellidos</th>
+                        <th width="10%">eMail</th>
+                        <th width="15%">Año contratación</th>
+                        <th width="15%">Acciones</th>
 
+                    </thead>
+                    <tbody>
+    `;
 /**
  * Función que descarga la info MS Plantilla al llamar a una de sus rutas
  * @param {string} ruta Ruta a descargar
@@ -106,6 +121,52 @@ Plantilla.procesarHome = function () {
 Plantilla.procesarAcercaDe = function () {
     this.descargarRuta("/plantilla/acercade", this.mostrarAcercaDe);
 }
+/**
+ * Función para mostrar en pantalla todas las personas que se han recuperado de la BBDD.
+ * @param {Vector_de_personas} vector Vector con los datos de las personas a mostrar
+ */
 
+Plantilla.imprimeMuchasPersonas = function (vector) {
+    // console.log(vector) // Para comprobar lo que hay en vector
 
+    // Compongo el contenido que se va a mostrar dentro de la tabla
+    let msj = Plantilla.plantillaTablaPersonas.cabecera
+    vector.forEach(e => msj += Plantilla.plantillaTablaPersonas.actualiza(e))
+    msj += Plantilla.plantillaTablaPersonas.pie
 
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Listado de personas", msj)
+}
+/**
+ * Función que recuperar todas las personas llamando al MS Personas
+ * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
+ */
+
+Plantilla.recupera = async function (callBackFn) {
+    let response = null
+
+    // Intento conectar con el microservicio personas
+    try {
+        const url = Frontend.API_GATEWAY + "/Quidditch/getTodas"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todas las persoans que se han descargado
+    let vectorPersonas = null
+    if (response) {
+        vectorPersonas = await response.json()
+        callBackFn(vectorPersonas.data)
+    }
+}
+
+/**
+ * Función principal para recuperar las personas desde el MS y, posteriormente, imprimirlas.
+ */
+Plantilla.listar = function () {
+    Plantilla.recupera(Plantilla.imprimeMuchasPersonas);
+}

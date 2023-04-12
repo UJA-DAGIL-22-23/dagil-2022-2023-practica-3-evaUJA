@@ -26,9 +26,9 @@ describe('Servidor PLANTILLA:', () => {
           //console.log( res.body ); // Para comprobar qué contiene exactamente res.body
           assert(res.body.hasOwnProperty('mensaje'));
           assert(res.body.mensaje === "Microservicio MS Plantilla: home");
-            assert(res.body.autor === "Eva");
-            assert(res.body.email === "etm00016@red.ujaen.es");
-            assert(res.body.fecha === "28/03/2023");
+          assert(res.body.autor === "Eva");
+          assert(res.body.email === "etm00016@red.ujaen.es");
+          assert(res.body.fecha === "28/03/2023");
 
 
         })
@@ -69,6 +69,22 @@ describe('Servidor PLANTILLA:', () => {
     });
 
   })
+
+    /**
+     * Tests para ver que todas funciona
+     */
+    it('Devuelve un vector de tamaño 3 al consultar mediante getTodas', (done) => {
+        supertest(app)
+            .get('/getTodas')
+            .expect(200)
+            .expect('Content-Type', /json/)
+            .expect(function (res) {
+                // console.log( res.body ); // Para comprobar qué contiene exactamente res.body
+                assert(res.body.data.length === 3);
+            })
+            .end((error) => { error ? done.fail(error) : done(); }
+            );
+    });
 });
 
 
