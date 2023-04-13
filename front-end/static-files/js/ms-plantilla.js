@@ -33,6 +33,9 @@ Plantilla.plantillaTags = {
     "TIPOESCOBA":"###TIPOESCOBA ###"
 
 }
+Plantilla.cerear = function ( num ) {
+    return (num<10?"0":"")+num
+}
 // Cabecera de la tabla
 Plantilla.plantillaTablaPersonas.cabecera = `<table width="100%" class="listado-personas">
                     <thead>
@@ -183,6 +186,40 @@ Plantilla.imprimeMuchasPersonas2 = function (vector) {
     Frontend.Article.actualizar("Listado de personas solo con su nombre", msj)
 }
 
+Plantilla.imprimeOrdenadorAlfabeticamente = function(vector,campo){
+   vector.sort(function(a,b)
+    {
+        let campoA = null; //= a.data[campo].toUpperCase();
+        let campoB = null;  //= b.data[campo].toUpperCase();
+        if(campo == 'fechaNacimiento'){
+            campoA = a.data[campo].annio + "" +  Plantilla.cerear(a.data[campo].mes) + ""+ Plantilla.cerear(a.data[campo].dia)
+            campoB = b.data[campo].annio + "" +   Plantilla.cerear(b.data[campo].mes) + ""+ Plantilla.cerear(b.data[campo].dia)
+        }else{
+            campoA = a.data[campo].toUpperCase();
+            campoB = b.data[campo].toUpperCase();
+        }
+            if (campoA < campoB) {
+                return -1;
+            }
+            if (campoA > campoB) {
+                return 1;
+            }
+            return 0;
+    });
+        //console.log(vector) // Para comprobar lo que hay en vector
+
+        // Compongo el contenido que se va a mostrar dentro de la tabla
+        let msj = Plantilla.plantillaTablaPersonas.cabecera
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaPersonas.actualiza(e))
+    }
+        msj += Plantilla.plantillaTablaPersonas.pie
+        // Para comprobar lo que hay en vector
+        // Borro toda la info de Article y la sustituyo por la que me interesa
+        Frontend.Article.actualizar("Listado de personas solo con su nombre", msj)
+
+}
+
 /**
  * Actualiza el cuerpo de la tabla con los datos de la persona que se le pasa
  * @param {Persona} Persona Objeto con los datos de la persona que queremos escribir en el TR
@@ -207,7 +244,7 @@ Plantilla.sustituyeTags = function (plantilla, persona) {
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
         .replace(new RegExp(Plantilla.plantillaTags.APELLIDOS, 'g'), persona.data.apellidos)
         .replace(new RegExp(Plantilla.plantillaTags.POSICION, 'g'), persona.data.posicion)
-        .replace(new RegExp(Plantilla.plantillaTags.FECHADENACIMIENTO, 'g'), persona.data.fechaNacimiento)
+        .replace(new RegExp(Plantilla.plantillaTags.FECHADENACIMIENTO, 'g'), persona.data.fechaNacimiento.annio + "/" + persona.data.fechaNacimiento.mes + "/" + persona.data.fechaNacimiento.dia)
         .replace(new RegExp(Plantilla.plantillaTags.CASAHODWARTS, 'g'), persona.data.casaHogwarts)
         .replace(new RegExp(Plantilla.plantillaTags.COPASMUNDIALES, 'g'), persona.data.copasMundiales)
         .replace(new RegExp(Plantilla.plantillaTags.TIPOESCOBA, 'g'), persona.data.tipoEscoba)
@@ -224,7 +261,7 @@ Plantilla.sustituyeTags2 = function (plantilla, persona) {
  * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
  */
 
-Plantilla.recupera = async function (callBackFn) {
+Plantilla.recupera = async function (callBackFn,campo) {
     let response = null
 
     // Intento conectar con el microservicio personas
@@ -242,7 +279,7 @@ Plantilla.recupera = async function (callBackFn) {
     let vectorPersonas = null
     if (response) {
         vectorPersonas = await response.json()
-        callBackFn(vectorPersonas.data)
+        callBackFn(vectorPersonas.data,campo)
 
     }
 }
@@ -258,6 +295,11 @@ Plantilla.listar2 = function () {
     Plantilla.recupera(Plantilla.imprimeMuchasPersonas2);
 }
 
+Plantilla.listar3 = function (campo) {
+    Plantilla.recupera(Plantilla.imprimeOrdenadorAlfabeticamente,campo);
+}
+
+Plantilla.l
 // Elemento TR que muestra los datos de una persona
 Plantilla.plantillaTablaPersonas.cuerpo = `
     <tr title="${Plantilla.plantillaTags.ID}">
@@ -298,7 +340,7 @@ Plantilla.mostrar = function (idPersona) {
  */
 Plantilla.recuperaUnaPersona = async function (idPersona, callBackFn) {
     try {
-        const url = Frontend.API_GATEWAY + "/personas/getPorId/" + idPersona
+        const url = Frontend.API_GATEWAY + "/Quidditch/getPorId/" + idPersona
         const response = await fetch(url);
         if (response) {
             const persona = await response.json()
