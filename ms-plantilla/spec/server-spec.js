@@ -26,9 +26,7 @@ describe('Servidor PLANTILLA:', () => {
           //console.log( res.body ); // Para comprobar qué contiene exactamente res.body
           assert(res.body.hasOwnProperty('mensaje'));
           assert(res.body.mensaje === "Microservicio MS Plantilla: home");
-          assert(res.body.autor === "Eva");
-          assert(res.body.email === "etm00016@red.ujaen.es");
-          assert(res.body.fecha === "28/03/2023");
+
 
 
         })
@@ -43,6 +41,9 @@ describe('Servidor PLANTILLA:', () => {
           //console.log( "BODY ACERCA DE ", res.body ); // Para comprobar qué contiene exactamente res.body
           assert(res.body.hasOwnProperty('mensaje'));
           assert(res.body.mensaje === "Microservicio MS Plantilla: acerca de");
+          assert(res.body.autor === "Eva");
+          assert(res.body.email === "etm00016@red.ujaen.es");
+          assert(res.body.fecha === "28/03/2023");
 
         })
         .end((error) => { error ? done.fail(error) : done() })
@@ -79,8 +80,8 @@ describe('Servidor PLANTILLA:', () => {
             .expect(200)
             .expect('Content-Type', /json/)
             .expect(function (res) {
-                // console.log( res.body ); // Para comprobar qué contiene exactamente res.body
-                assert(res.body.data.length === 3);
+                console.log( res.body ); // Para comprobar qué contiene exactamente res.body
+                assert(res.body.data.length === 11);
             })
             .end((error) => { error ? done.fail(error) : done(); }
             );

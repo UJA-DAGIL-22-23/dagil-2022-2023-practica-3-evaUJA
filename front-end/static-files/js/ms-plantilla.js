@@ -132,10 +132,10 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
     const mensajeAMostrar = `<div>
     <p>${datosDescargados.mensaje}</p>
     <ul>
-        <li><b>Autor/a</b>: ${datosDescargados.mensaje}</li>
-        <li><b>E-mail</b>: ${datosDescargados.autor}</li>
+        <li><b>Mensaje/a</b>: ${datosDescargados.mensaje}</li>
+        <li><b>Autor </b>: ${datosDescargados.autor}</li>
         <li><b>E-mail</b>: ${datosDescargados.email}</li>
-        <li><b>E-mail</b>: ${datosDescargados.fecha}</li>
+        <li><b>Fecha de Nacimiento </b>: ${datosDescargados.fecha}</li>
   
     </ul>
     </div>
