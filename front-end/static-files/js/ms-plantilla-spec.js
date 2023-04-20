@@ -15,6 +15,9 @@ const TITULO_ACERCA_DE = "Plantilla Acerca de"
 const LISTADO_IMPRIMIR_MUCHAS_PERSONAS = "Listado de personas con todos los datos "
 const LISTADO_IMPRIMIR_MUCHAS_PERSONAS_ALFABETICAMENTE="Listado de personas ordenadas alfabeticamente solo con su nombre"
 const CEREAR = "cerear"
+const LISTADO_NOMBRE_MUCHAS_PERSONAS ="Listado de personas solo con su nombre"
+const LISTADO_UNA_PERSONA="Mostrar una persona"
+
 
 const datosDescargadosPrueba = {
     mensaje: "Mensaje de prueba descargado",
@@ -181,6 +184,41 @@ describe("Plantilla.cerear: ", function (){
         })
 
 })
+
+describe("Plantilla.imprimeNombreMuchasPersonas: ", function (){
+    it("muestra datos nulos cuando le pasamos un valor nulo",
+        function () {
+            Plantilla.imprimeNombreMuchasPersonas([])
+            expect(elementoTitulo.innerHTML).toBe(LISTADO_NOMBRE_MUCHAS_PERSONAS)
+
+        })
+    it("muestra datos nulos cuando le pasamos un valor no nulo ",
+        function () {
+            Plantilla.imprimeNombreMuchasPersonas(15)
+            expect(elementoTitulo.innerHTML).toBe(LISTADO_NOMBRE_MUCHAS_PERSONAS)
+
+        })
+
+})
+//PREGUNTAR
+/*
+describe("Plantilla.imprimeUnaPersona: ", function (){
+    it("muestra datos nulos cuando le pasamos un valor nulo",
+        function () {
+            Plantilla.imprimeUnaPersona([])
+            expect(elementoTitulo.innerHTML).toBe(LISTADO_UNA_PERSONA)
+
+        })
+    it("muestra datos nulos cuando le pasamos un valor no nulo ",
+        function () {
+            Plantilla.imprimeUnaPersona(15)
+            expect(elementoTitulo.innerHTML).toBe(LISTADO_UNA_PERSONA)
+
+        })
+
+})*/ 
+
+
 
 /*
 IMPORTANTE

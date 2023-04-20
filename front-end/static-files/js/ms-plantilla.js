@@ -177,12 +177,14 @@ Plantilla.imprimeMuchasPersonas = function (vector) {
     Frontend.Article.actualizar("Listado de personas con todos los datos ", msj)
 }
 
-Plantilla.imprimeMuchasPersonas2 = function (vector) {
+Plantilla.imprimeNombreMuchasPersonas = function (vector) {
      //console.log(vector) // Para comprobar lo que hay en vector
 
     // Compongo el contenido que se va a mostrar dentro de la tabla
     let msj = Plantilla.plantillaTablaPersonas.cabecera2
+    if (vector && Array.isArray(vector)) {
     vector.forEach(e => msj += Plantilla.plantillaTablaPersonas.actualiza2(e))
+    }
     msj += Plantilla.plantillaTablaPersonas.pie
      // Para comprobar lo que hay en vector
     // Borro toda la info de Article y la sustituyo por la que me interesa
@@ -297,7 +299,7 @@ Plantilla.listar = function () {
 }
 
 Plantilla.listar2 = function () {
-    Plantilla.recupera(Plantilla.imprimeMuchasPersonas2);
+    Plantilla.recupera(Plantilla.imprimeNombreMuchasPersonas);
 }
 
 Plantilla.listar3 = function (campo) {
@@ -372,7 +374,17 @@ Plantilla.imprimeUnaPersona = function (persona) {
     // Actualiza el objeto que guarda los datos mostrados
     Plantilla.almacenaDatos(persona)
 }
+/**
+ * Imprime los datos de una persona como una tabla dentro de un formulario usando la plantilla del formulario.
+ * @param {persona} Persona Objeto con los datos de la persona
+ * @returns Una cadena con la tabla que tiene ya los datos actualizados
+ */
+Plantilla.personaComoFormulario = function (persona) {
+    return Plantilla.plantillaFormularioPersona.actualiza( persona );
+}
 
+/// Plantilla para poner los datos de una persona en un tabla dentro de un formulario
+Plantilla.plantillaFormularioPersona = {}
 /**
  * Almacena los datos de la persona que se está mostrando
  * @param {Persona} persona Datos de la persona a almacenar
