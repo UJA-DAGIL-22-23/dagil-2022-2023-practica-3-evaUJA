@@ -12,12 +12,30 @@ const elementoTitulo = document.getElementById(Frontend.ID_SECCION_PRINCIPAL_TIT
 const elementoContenido = document.getElementById(Frontend.ID_SECCION_PRINCIPAL_CONTENIDO)
 const TITULO_HOME = "Plantilla Home"
 const TITULO_ACERCA_DE = "Plantilla Acerca de"
+const LISTADO_IMPRIMIR_MUCHAS_PERSONAS = "Listado de personas con todos los datos "
+const LISTADO_IMPRIMIR_MUCHAS_PERSONAS_ALFABETICAMENTE="Listado de personas ordenadas alfabeticamente solo con su nombre"
+const CEREAR = "cerear"
 
 const datosDescargadosPrueba = {
     mensaje: "Mensaje de prueba descargado",
     autor: "Prueba de autor",
     email: "Prueba de email",
     fecha: "00/00/0000"
+}
+
+const datosDescargadosPruebaPersona = {
+    id: 1,
+    nombre: "Harry",
+    apellidos: "Potter",
+    posicion: "buscador",
+    fechaNacimiento: {
+        dia: 16,
+        mes: 12,
+        annio: 1999
+    },
+    casaHogwarts: "Gryffindor",
+    copasMundiales: [2009, 2011, 2013, 2015],
+    tipoEscoba: "Nimbus"
 }
 
 
@@ -90,26 +108,26 @@ describe("Plantilla.mostrarAcercaDe: ", function () {
     it("muestra datos nulos cuando le pasamos un objeto que no tiene campo mensaje o autor o email o fecha ",
         function () {
             // Objeto vacío
-     //       Plantilla.mostrarAcercaDe({})
-       //     expect(elementoTitulo.innerHTML).toBe(TITULO_ACERCA_DE)
-     //       expect(elementoContenido.innerHTML.search(Plantilla.datosDescargadosNulos.mensaje) >= 0).toBeTrue()
-//
+           Plantilla.mostrarAcercaDe({})
+            expect(elementoTitulo.innerHTML).toBe(TITULO_ACERCA_DE)
+            expect(elementoContenido.innerHTML.search(Plantilla.datosDescargadosNulos.mensaje) >= 0).toBeTrue()
+
             // Objeto sin campo mensaje
-   //         Plantilla.mostrarAcercaDe({ autor: "un autor", email: "un email", fecha: "una fecha" })
-     //       expect(elementoTitulo.innerHTML).toBe(TITULO_ACERCA_DE)
-      //      expect(elementoContenido.innerHTML.search(Plantilla.datosDescargadosNulos.mensaje) >= 0).toBeTrue()
+           Plantilla.mostrarAcercaDe({ autor: "un autor", email: "un email", fecha: "una fecha" })
+           expect(elementoTitulo.innerHTML).toBe(TITULO_ACERCA_DE)
+           expect(elementoContenido.innerHTML.search(Plantilla.datosDescargadosNulos.mensaje) >= 0).toBeTrue()
             // Objeto sin campo autor
-  //          Plantilla.mostrarAcercaDe({ mensaje: "un mensaje", email: "un email", fecha: "una fecha" })
-    //        expect(elementoTitulo.innerHTML).toBe(TITULO_ACERCA_DE)
-    ///        expect(elementoContenido.innerHTML.search(Plantilla.datosDescargadosNulos.mensaje) >= 0).toBeTrue()
+           Plantilla.mostrarAcercaDe({ mensaje: "un mensaje", email: "un email", fecha: "una fecha" })
+            expect(elementoTitulo.innerHTML).toBe(TITULO_ACERCA_DE)
+            expect(elementoContenido.innerHTML.search(Plantilla.datosDescargadosNulos.mensaje) >= 0).toBeTrue()
             // Objeto sin campo email
-    //      Plantilla.mostrarAcercaDe({ mensaje: "un mensaje", autor: "un autor", fecha: "una fecha" })
-    ////       expect(elementoTitulo.innerHTML).toBe(TITULO_ACERCA_DE)
-     //      expect(elementoContenido.innerHTML.search(Plantilla.datosDescargadosNulos.mensaje) >= 0).toBeTrue()
+          Plantilla.mostrarAcercaDe({ mensaje: "un mensaje", autor: "un autor", fecha: "una fecha" })
+          expect(elementoTitulo.innerHTML).toBe(TITULO_ACERCA_DE)
+           expect(elementoContenido.innerHTML.search(Plantilla.datosDescargadosNulos.mensaje) >= 0).toBeFalse()
             // Objeto sin campo fecha
-     //      Plantilla.mostrarAcercaDe({ mensaje: "un mensaje", autor: "un autor", email: "un email" })
-      //      expect(elementoTitulo.innerHTML).toBe(TITULO_ACERCA_DE)
-      //     expect(elementoContenido.innerHTML.search(Plantilla.datosDescargadosNulos.mensaje) >= 0).toBeTrue()
+           Plantilla.mostrarAcercaDe({ mensaje: "un mensaje", autor: "un autor", email: "un email" })
+            expect(elementoTitulo.innerHTML).toBe(TITULO_ACERCA_DE)
+           expect(elementoContenido.innerHTML.search(Plantilla.datosDescargadosNulos.mensaje) >= 0).toBeFalse()
         })
     it("muestra correctamente el título y el mensaje conteniendo el autor, el email y la fecha",
         function () {
@@ -117,12 +135,52 @@ describe("Plantilla.mostrarAcercaDe: ", function () {
             expect(elementoTitulo.innerHTML).toBe(TITULO_ACERCA_DE)
 
             // Comprobamos que al buscar el autor, el email y la fecha de prueba los encuentra dentro del contenido del article
-       //     expect(elementoContenido.innerHTML.search(datosDescargadosPrueba.autor) >= 0).toBeTrue()
-       //     expect(elementoContenido.innerHTML.search(datosDescargadosPrueba.email) >= 0).toBeTrue()
-       //     expect(elementoContenido.innerHTML.search(datosDescargadosPrueba.fecha) >= 0).toBeTrue()
+          expect(elementoContenido.innerHTML.search(datosDescargadosPrueba.autor) >= 0).toBeTrue()
+            expect(elementoContenido.innerHTML.search(datosDescargadosPrueba.email) >= 0).toBeTrue()
+            expect(elementoContenido.innerHTML.search(datosDescargadosPrueba.fecha) >= 0).toBeTrue()
+        })
+
+})
+
+describe("Plantilla.imprimeMuchasPersonas: ", function () {
+    it("muestra datos nulos cuando le pasamos un valor nulo",
+        function () {
+            Plantilla.imprimeMuchasPersonas([])
+            expect(elementoTitulo.innerHTML).toBe(LISTADO_IMPRIMIR_MUCHAS_PERSONAS)
+
+        })
+    it("muestra datos nulos cuando le pasamos un valor no nulo ",
+        function () {
+            Plantilla.imprimeMuchasPersonas(15)
+            expect(elementoTitulo.innerHTML).toBe(LISTADO_IMPRIMIR_MUCHAS_PERSONAS)
+
         })
 })
 
+describe("Plantilla.imprimeOrdenadorAlfabeticamente: ", function (){
+    it("muestra datos nulos cuando le pasamos un valor nulo",
+        function () {
+            Plantilla.imprimeOrdenadorAlfabeticamente([])
+            expect(elementoTitulo.innerHTML).toBe(LISTADO_IMPRIMIR_MUCHAS_PERSONAS_ALFABETICAMENTE)
+
+        })
+    it("muestra datos nulos cuando le pasamos un valor no nulo ",
+        function () {
+            Plantilla.imprimeOrdenadorAlfabeticamente(15)
+            expect(elementoTitulo.innerHTML).toBe(LISTADO_IMPRIMIR_MUCHAS_PERSONAS_ALFABETICAMENTE)
+
+        })
+})
+
+describe("Plantilla.cerear: ", function (){
+    it("muestra datos nulos cuando le pasamos un valor nulo",
+        function () {
+            Plantilla.cerear()
+            expect(Plantilla.cerear(5)).toBe("05");
+
+        })
+
+})
 
 /*
 IMPORTANTE

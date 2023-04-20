@@ -35,6 +35,7 @@ Plantilla.plantillaTags = {
 }
 Plantilla.cerear = function ( num ) {
     return (num<10?"0":"")+num
+
 }
 // Cabecera de la tabla
 Plantilla.plantillaTablaPersonas.cabecera = `<table width="100%" class="listado-personas">
@@ -167,7 +168,9 @@ Plantilla.imprimeMuchasPersonas = function (vector) {
 
     // Compongo el contenido que se va a mostrar dentro de la tabla
     let msj = Plantilla.plantillaTablaPersonas.cabecera
-    vector.forEach(e => msj += Plantilla.plantillaTablaPersonas.actualiza(e))
+    if (vector && Array.isArray(vector)) {
+        vector.forEach(e => msj += Plantilla.plantillaTablaPersonas.actualiza(e))
+    }
     msj += Plantilla.plantillaTablaPersonas.pie
 
     // Borro toda la info de Article y la sustituyo por la que me interesa
@@ -187,17 +190,24 @@ Plantilla.imprimeMuchasPersonas2 = function (vector) {
 }
 
 Plantilla.imprimeOrdenadorAlfabeticamente = function(vector,campo){
-   vector.sort(function(a,b)
-    {
-        let campoA = null; //= a.data[campo].toUpperCase();
-        let campoB = null;  //= b.data[campo].toUpperCase();
-        if(campo == 'fechaNacimiento'){
-            campoA = a.data[campo].annio + "" +  Plantilla.cerear(a.data[campo].mes) + ""+ Plantilla.cerear(a.data[campo].dia)
-            campoB = b.data[campo].annio + "" +   Plantilla.cerear(b.data[campo].mes) + ""+ Plantilla.cerear(b.data[campo].dia)
-        }else{
-            campoA = a.data[campo].toUpperCase();
-            campoB = b.data[campo].toUpperCase();
-        }
+
+
+        //console.log(vector) // Para comprobar lo que hay en vector
+
+        // Compongo el contenido que se va a mostrar dentro de la tabla
+        let msj = Plantilla.plantillaTablaPersonas.cabecera
+    if (vector && Array.isArray(vector)) {
+        vector.sort(function(a,b)
+        {
+            let campoA = null; //= a.data[campo].toUpperCase();
+            let campoB = null;  //= b.data[campo].toUpperCase();
+            if(campo == 'fechaNacimiento'){
+                campoA = a.data[campo].annio + "" +  Plantilla.cerear(a.data[campo].mes) + ""+ Plantilla.cerear(a.data[campo].dia)
+                campoB = b.data[campo].annio + "" +   Plantilla.cerear(b.data[campo].mes) + ""+ Plantilla.cerear(b.data[campo].dia)
+            }else{
+                campoA = a.data[campo].toUpperCase();
+                campoB = b.data[campo].toUpperCase();
+            }
             if (campoA < campoB) {
                 return -1;
             }
@@ -205,18 +215,13 @@ Plantilla.imprimeOrdenadorAlfabeticamente = function(vector,campo){
                 return 1;
             }
             return 0;
-    });
-        //console.log(vector) // Para comprobar lo que hay en vector
-
-        // Compongo el contenido que se va a mostrar dentro de la tabla
-        let msj = Plantilla.plantillaTablaPersonas.cabecera
-    if (vector && Array.isArray(vector)) {
+        });
         vector.forEach(e => msj += Plantilla.plantillaTablaPersonas.actualiza(e))
     }
         msj += Plantilla.plantillaTablaPersonas.pie
         // Para comprobar lo que hay en vector
         // Borro toda la info de Article y la sustituyo por la que me interesa
-        Frontend.Article.actualizar("Listado de personas solo con su nombre", msj)
+        Frontend.Article.actualizar("Listado de personas ordenadas alfabeticamente solo con su nombre", msj)
 
 }
 
