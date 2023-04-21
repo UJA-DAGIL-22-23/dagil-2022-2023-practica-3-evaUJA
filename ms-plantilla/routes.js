@@ -56,5 +56,17 @@ router.get("/getTodas", async (req, res) => {
         console.log(error);
     }
 });
+
+/**
+ * Devuelve los datos de la persona con el id pasado /Quidditch/getPorId/
+ */
+router.get("/getPorId/:idPersona", async (req, res) => {
+    try {
+        await callbacks.getPorId(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 // Exporto el módulo para poder usarlo en server
 module.exports = router;

@@ -50,5 +50,17 @@ describe('Servidor FRONT-END:', () => {
               })
               .end((error) => { error ? done.fail(error) : done() })
       });
+      it('Cualquier otra ruta, como : /patata/consome/zanahoria también index.html', (done) => {
+          supertest(app)
+              .get('/Quidditch/getPorId/360436964015472845')
+              .expect(200)
+              .expect('Content-Type', /html/)
+              .expect(function (res) {
+               //   console.log( res.text ); // Para comprobar qué contiene exactamente res.text
+                  assert(res.text.search("<h1>Aplicación Microservicios Plantilla</h1>")>=0)
+
+              })
+              .end((error) => { error ? done.fail(error) : done() })
+      });
   })
 })

@@ -80,8 +80,22 @@ describe('Servidor PLANTILLA:', () => {
             .expect(200)
             .expect('Content-Type', /json/)
             .expect(function (res) {
-                console.log( res.body ); // Para comprobar qué contiene exactamente res.body
+               // console.log( res.body ); // Para comprobar qué contiene exactamente res.body
                 assert(res.body.data.length === 11);
+            })
+            .end((error) => { error ? done.fail(error) : done(); }
+            );
+    });
+
+    it('Devuelve Gryffindor al recuperar los datos de la Persona con id 360436964015472845 mediante getPorId', (done) => {
+        supertest(app)
+            .get('/getPorId/360436964015472845')
+            .expect(200)
+            .expect('Content-Type', /json/)
+            .expect(function (res) {
+                //console.log( res.body ); // Para comprobar qué contiene exactamente res.body
+                assert(res.body.data.hasOwnProperty('casaHogwarts'));
+                assert(res.body.data.casaHogwarts === "Gryffindor");
             })
             .end((error) => { error ? done.fail(error) : done(); }
             );

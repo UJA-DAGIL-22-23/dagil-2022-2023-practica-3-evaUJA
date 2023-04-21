@@ -37,6 +37,48 @@ Plantilla.cerear = function ( num ) {
     return (num<10?"0":"")+num
 
 }
+/// Plantilla para poner los datos de una persona en un tabla dentro de un formulario
+Plantilla.plantillaFormularioPersona = {}
+
+
+// Cabecera del formulario
+Plantilla.plantillaFormularioPersona.formulario = `
+<form method='post' action=''>
+    <table width="100%" class="listado-personas">
+        <thead>
+            <th width="10%">Id</th><th width="20%">Nombre</th><th width="20%">Apellidos</th><th width="10%">eMail</th>
+            <th width="15%">Año contratación</th><th width="25%">Acciones</th>
+        </thead>
+        <tbody>
+            <tr title="${Plantilla.plantillaTags.ID}">
+                <td><input type="text" class="form-persona-elemento" disabled id="form-persona-id"
+                        value="${Plantilla.plantillaTags.ID}" 
+                        name="id_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" disabled
+                        id="form-persona-nombre" required value="${Plantilla.plantillaTags.NOMBRE}" 
+                        name="nombre_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" disabled
+                        id="form-persona-apellidos" value="${Plantilla.plantillaTags.APELLIDOS}" 
+                        name="apellidos_persona"/></td>
+                <td><input type="email" class="form-persona-elemento editable" disabled
+                        id="form-persona-email" required value="${Plantilla.plantillaTags.TIPOESCOBA}" 
+                        name="email_persona"/></td>
+                <td><input type="number" class="form-persona-elemento editable" disabled
+                        id="form-persona-anio" min="1950" max="2030" size="8" required
+                        value="${Plantilla.plantillaTags["AÑO ENTRADA"]}" 
+                        name="año_entrada_persona"/></td>
+                <td>
+                    <div><a href="javascript:Personas.editar()" class="opcion-secundaria mostrar">Editar</a></div>
+                    <div><a href="javascript:Personas.guardar()" class="opcion-terciaria editar ocultar">Guardar</a></div>
+                    <div><a href="javascript:Personas.cancelar()" class="opcion-terciaria editar ocultar">Cancelar</a></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+`;
+
+
 // Cabecera de la tabla
 Plantilla.plantillaTablaPersonas.cabecera = `<table width="100%" class="listado-personas">
                     <thead>
@@ -306,7 +348,7 @@ Plantilla.listar3 = function (campo) {
     Plantilla.recupera(Plantilla.imprimeOrdenadorAlfabeticamente,campo);
 }
 
-Plantilla.l
+
 // Elemento TR que muestra los datos de una persona
 Plantilla.plantillaTablaPersonas.cuerpo = `
     <tr title="${Plantilla.plantillaTags.ID}">
@@ -336,7 +378,7 @@ Plantilla.plantillaTablaPersonas.cuerpo2 = `
     </tr>
     `;
 
-Plantilla.mostrar = function (idPersona) {
+Plantilla.mostrar = function (idPersona ) {
     this.recuperaUnaPersona(idPersona, this.imprimeUnaPersona);
 }
 /**
@@ -354,7 +396,7 @@ Plantilla.recuperaUnaPersona = async function (idPersona, callBackFn) {
             callBackFn(persona)
         }
     } catch (error) {
-        alert("Error: No se han podido acceder al API Gateway")
+        alert("Error: No se han podido acceder al API Gateway :(")
         console.error(error)
     }
 }
@@ -383,8 +425,15 @@ Plantilla.personaComoFormulario = function (persona) {
     return Plantilla.plantillaFormularioPersona.actualiza( persona );
 }
 
-/// Plantilla para poner los datos de una persona en un tabla dentro de un formulario
-Plantilla.plantillaFormularioPersona = {}
+/**
+ * Actualiza el formulario con los datos de la persona que se le pasa
+ * @param {Persona} Persona Objeto con los datos de la persona que queremos escribir en el TR
+ * @returns La plantilla del cuerpo de la tabla con los datos actualizados
+ */
+Plantilla.plantillaFormularioPersona.actualiza = function (persona) {
+    return Plantilla.sustituyeTags(this.formulario, persona)
+}
+
 /**
  * Almacena los datos de la persona que se está mostrando
  * @param {Persona} persona Datos de la persona a almacenar
