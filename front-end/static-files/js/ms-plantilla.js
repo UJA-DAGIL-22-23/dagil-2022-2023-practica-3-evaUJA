@@ -47,7 +47,7 @@ Plantilla.plantillaFormularioPersona.formulario = `
     <table width="100%" class="listado-personas">
         <thead>
             <th width="10%">Id</th><th width="20%">Nombre</th><th width="20%">Apellidos</th><th width="10%">eMail</th>
-            <th width="15%">Año contratación</th><th width="25%">Acciones</th>
+            <th width="15%">Fecha de nacimiento </th><th width="25%">Acciones</th>
         </thead>
         <tbody>
             <tr title="${Plantilla.plantillaTags.ID}">
@@ -60,10 +60,10 @@ Plantilla.plantillaFormularioPersona.formulario = `
                 <td><input type="text" class="form-persona-elemento editable" disabled
                         id="form-persona-apellidos" value="${Plantilla.plantillaTags.APELLIDOS}" 
                         name="apellidos_persona"/></td>
-                <td><input type="email" class="form-persona-elemento editable" disabled
+                <td><input type="text" class="form-persona-elemento editable" disabled
                         id="form-persona-email" required value="${Plantilla.plantillaTags.TIPOESCOBA}" 
                         name="email_persona"/></td>
-                <td><input type="number" class="form-persona-elemento editable" disabled
+                <td><input type="d" class="form-persona-elemento editable" disabled
                         id="form-persona-anio" min="1950" max="2030" size="8" required
                         value="${Plantilla.plantillaTags["AÑO ENTRADA"]}" 
                         name="año_entrada_persona"/></td>
@@ -77,6 +77,7 @@ Plantilla.plantillaFormularioPersona.formulario = `
     </table>
 </form>
 `;
+
 
 
 // Cabecera de la tabla
@@ -372,15 +373,15 @@ Plantilla.plantillaTablaPersonas.cuerpo2 = `
       
         <td>${Plantilla.plantillaTags.NOMBRE}</td>
       
-        <td>
-                    <div><a href="javascript:Plantilla.mostrar('${Plantilla.plantillaTags.ID}')" class="opcion-secundaria mostrar">Mostrar</a></div>
-        </td>
+   
     </tr>
     `;
 
 Plantilla.mostrar = function (idPersona ) {
     this.recuperaUnaPersona(idPersona, this.imprimeUnaPersona);
 }
+
+
 /**
  * Función que recuperar todas las personas llamando al MS Personas.
  * Posteriormente, llama a la función callBackFn para trabajar con los datos recuperados.
@@ -416,6 +417,8 @@ Plantilla.imprimeUnaPersona = function (persona) {
     // Actualiza el objeto que guarda los datos mostrados
     Plantilla.almacenaDatos(persona)
 }
+
+
 /**
  * Imprime los datos de una persona como una tabla dentro de un formulario usando la plantilla del formulario.
  * @param {persona} Persona Objeto con los datos de la persona
@@ -424,6 +427,7 @@ Plantilla.imprimeUnaPersona = function (persona) {
 Plantilla.personaComoFormulario = function (persona) {
     return Plantilla.plantillaFormularioPersona.actualiza( persona );
 }
+
 
 /**
  * Actualiza el formulario con los datos de la persona que se le pasa
