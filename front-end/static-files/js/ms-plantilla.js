@@ -46,27 +46,42 @@ Plantilla.plantillaFormularioPersona.formulario = `
 <form method='post' action=''>
     <table width="100%" class="listado-personas">
         <thead>
-            <th width="10%">Id</th><th width="20%">Nombre</th><th width="20%">Apellidos</th><th width="10%">eMail</th>
-            <th width="15%">Fecha de nacimiento </th><th width="25%">Acciones</th>
+             <th width="10%">Id</th>
+                        <th width="10%">Nombre</th>
+                        <th width="10%">Apellidos</th>
+                        <th width="10%">Posicion</th>
+                        <th width="10%">FechaDeNacimiento</th>
+                        <th width="10%">cadaHodwarts</th>
+                        <th width="10%">CopasMundiales</th>
+                         <th width="10%">TipoEscoba</th>
+                        <th width="10%">Acciones</th>
         </thead>
         <tbody>
             <tr title="${Plantilla.plantillaTags.ID}">
                 <td><input type="text" class="form-persona-elemento" disabled id="form-persona-id"
                         value="${Plantilla.plantillaTags.ID}" 
                         name="id_persona"/></td>
-                <td><input type="text" class="form-persona-elemento editable" disabled
+                <td><input type="text" class="form-persona-elemento editable" 
                         id="form-persona-nombre" required value="${Plantilla.plantillaTags.NOMBRE}" 
                         name="nombre_persona"/></td>
-                <td><input type="text" class="form-persona-elemento editable" disabled
+                <td><input type="text" class="form-persona-elemento editable" 
                         id="form-persona-apellidos" value="${Plantilla.plantillaTags.APELLIDOS}" 
                         name="apellidos_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" 
+                        id="form-persona-posicion" required value="${Plantilla.plantillaTags.POSICION}" 
+                        name="posicion_persona"/></td>
                 <td><input type="text" class="form-persona-elemento editable" disabled
-                        id="form-persona-email" required value="${Plantilla.plantillaTags.TIPOESCOBA}" 
-                        name="email_persona"/></td>
-                <td><input type="d" class="form-persona-elemento editable" disabled
-                        id="form-persona-anio" min="1950" max="2030" size="8" required
-                        value="${Plantilla.plantillaTags["AÑO ENTRADA"]}" 
-                        name="año_entrada_persona"/></td>
+                        id="form-persona-fechaNacimiento" required value="${Plantilla.plantillaTags.FECHADENACIMIENTO}" 
+                        name="fechaNacimiento_persona"/></td>
+                          <td><input type="text" class="form-persona-elemento editable" 
+                        id="form-persona-casaHodwats" required value="${Plantilla.plantillaTags.CASAHODWARTS}" 
+                        name="casaHodwarts"/></td>
+                 <td><input type="text" class="form-persona-elemento editable" disabled
+                        id="form-persona-copasMundiales" required value="${Plantilla.plantillaTags.COPASMUNDIALES}" 
+                        name="copasMundiales_persona"/></td>
+                <td width="20%"><input type="text" class="form-persona-elemento editable" 
+                        id="form-persona-tipoEscoba" required value="${Plantilla.plantillaTags.TIPOESCOBA}" 
+                        name="tipoEscoba_persona"/></td>
                 <td>
                     <div><a href="javascript:Personas.editar()" class="opcion-secundaria mostrar">Editar</a></div>
                     <div><a href="javascript:Personas.guardar()" class="opcion-terciaria editar ocultar">Guardar</a></div>
@@ -445,4 +460,164 @@ Plantilla.plantillaFormularioPersona.actualiza = function (persona) {
 
 Plantilla.almacenaDatos = function (persona) {
     Plantilla.personaMostrada = persona;
+}
+
+
+// ultimas funcionalidades del formulario
+
+
+/**
+ * Establece disable = habilitando en los campos editables
+ * @param {boolean} Deshabilitando Indica si queremos deshabilitar o habilitar los campos
+ * @returns El propio objeto Personas, para concatenar llamadas
+ */
+Plantilla.habilitarDeshabilitarCamposEditables = function (deshabilitando) {
+    deshabilitando = (typeof deshabilitando === "undefined" || deshabilitando === null) ? true : deshabilitando
+    for (let campo in Plantilla.form) {
+        document.getElementById(Plantilla.form[campo]).disabled = deshabilitando
+    }
+    return this
+}
+
+
+/**
+ * Establece disable = true en los campos editables
+ * @returns El propio objeto Personas, para concatenar llamadas
+ */
+Plantilla.deshabilitarCamposEditables = function () {
+    Plantilla.habilitarDeshabilitarCamposEditables(true)
+    return this
+}
+
+
+/**
+ * Establece disable = false en los campos editables
+ * @returns El propio objeto Personas, para concatenar llamadas
+ */
+Plantilla.habilitarCamposEditables = function () {
+    Plantilla.habilitarDeshabilitarCamposEditables(false)
+    return this
+}
+
+
+/**
+ * ????Muestra las opciones que tiene el usuario cuando selecciona Editar
+ * @returns El propio objeto Personas, para concatenar llamadas
+ */
+Plantilla.opcionesMostrarOcultar = function (classname, mostrando) {
+    let opciones = document.getElementsByClassName(classname)
+    let claseQuitar = mostrando ? Frontend.CLASS_OCULTAR : Frontend.CLASS_MOSTRAR
+    let claseAniadir = !mostrando ? Frontend.CLASS_OCULTAR : Frontend.CLASS_MOSTRAR
+
+    for (let i = 0; i < opciones.length; ++i) {
+        Frontend.quitarClase(opciones[i], claseQuitar)
+            .aniadirClase(opciones[i], claseAniadir)
+    }
+    return this
+}
+
+/**
+ * Oculta todas las opciones secundarias
+ * @returns El propio objeto para encadenar llamadas
+ */
+Plantilla.ocultarOpcionesSecundarias = function () {
+    this.opcionesMostrarOcultar("opcion-secundaria", false)
+    return this
+}
+
+
+/**
+ * Muestra todas las opciones secundarias
+ * @returns El propio objeto para encadenar llamadas
+ */
+Plantilla.mostrarOpcionesSecundarias = function () {
+    this.opcionesMostrarOcultar("opcion-secundaria", true)
+    return this
+}
+
+
+/**
+ * Muestra las opciones que tiene el usuario cuando selecciona Editar
+ * @returns El propio objeto Personas, para concatenar llamadas
+ */
+Plantilla.mostrarOcionesTerciariasEditar = function () {
+    this.opcionesMostrarOcultar("opcion-terciaria editar", true)
+    return this
+}
+
+
+/**
+ * Oculta las opciones que tiene el usuario cuando selecciona Editar
+ * @returns El propio objeto Personas, para concatenar llamadas
+ */
+Plantilla.ocultarOcionesTerciariasEditar = function () {
+    this.opcionesMostrarOcultar("opcion-terciaria editar", false)
+    return this
+}
+
+
+/**
+ * Función que permite modificar los datos de una persona
+ */
+Plantilla.editar = function () {
+    this.ocultarOpcionesSecundarias()
+    this.mostrarOcionesTerciariasEditar()
+    this.habilitarCamposEditables()
+}
+
+/**
+ * Función que permite cancelar la acción sobre los datos de una persona
+ */
+Plantilla.cancelar = function () {
+    this.imprimeUnaPersona(this.recuperaDatosAlmacenados())
+    this.deshabilitarCamposEditables()
+    this.ocultarOcionesTerciariasEditar()
+    this.mostrarOpcionesSecundarias()
+}
+
+/**
+ * Recupera los valores almacenados de la persona que se estaba mostrando
+ * @return Datos de la persona a almacenada
+ */
+
+Plantilla.recuperaDatosAlmacenados = function () {
+    return this.personaMostrada;
+}
+/**
+ * Función para guardar los nuevos datos de una persona
+ */
+Plantilla.guardar = async function () {
+    try {
+        let url = Frontend.API_GATEWAY + "/personas/setTodo/"
+        let id_persona = document.getElementById("form-persona-id").value
+        const response = await fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'no-cors', // no-cors, cors, *same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'omit', // include, *same-origin, omit
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrer: 'no-referrer', // no-referrer, *client
+            body: JSON.stringify({
+                "id_persona": id_persona,
+                "nombre_persona": document.getElementById("form-persona-nombre").value,
+                "apellidos_persona": document.getElementById("form-persona-apellidos").value,
+                "email_persona": document.getElementById("form-persona-email").value,
+                "año_entrada_persona": document.getElementById("form-persona-anio").value
+            }), // body data type must match "Content-Type" header
+        })
+        /*
+        Error: No procesa bien la respuesta devuelta
+        if (response) {
+            const persona = await response.json()
+            alert(persona)
+        }
+        */
+        Plantilla.mostrar(id_persona)
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway " + error)
+        //console.error(error)
+    }
 }
