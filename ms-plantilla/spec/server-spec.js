@@ -61,7 +61,7 @@ describe('Servidor PLANTILLA:', () => {
         .expect('Content-Type', /json/)
         .expect(function (res) {
           //console.log( res.body ); // Para comprobar qué contiene exactamente res.body
-          assert(res.body.data[0].data.hasOwnProperty('id'));
+          assert(res.body.data[0].data.hasOwnProperty('fechaNacimiento'));
           assert(res.body.data[2].data.nombre === "Fran");
 
         })

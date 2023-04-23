@@ -18,7 +18,7 @@ Plantilla.datosDescargadosNulos = {
     mensaje: "Microservicio MS Plantilla: acerca de",
     autor: "Eva",
     email: "etm00016@red.ujaen.es",
-    fecha: "28/03/2023"
+    fecha: "16/12/1999"
 
 }
 // Tags que voy a usar para sustituir los campos
@@ -477,6 +477,7 @@ Plantilla.habilitarDeshabilitarCamposEditables = function (deshabilitando) {
         document.getElementById(Plantilla.form[campo]).disabled = deshabilitando
     }
     return this
+
 }
 
 
