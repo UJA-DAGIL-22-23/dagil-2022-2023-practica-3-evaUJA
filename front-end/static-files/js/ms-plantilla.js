@@ -264,7 +264,7 @@ Plantilla.imprimeOrdenadorAlfabeticamente = function(vector,campo){
         //console.log(vector) // Para comprobar lo que hay en vector
 
         // Compongo el contenido que se va a mostrar dentro de la tabla
-        let msj = Plantilla.plantillaTablaPersonas.cabecera
+        let msj = Plantilla.plantillaTablaPersonas.cabecera2
     if (vector && Array.isArray(vector)) {
         vector.sort(function(a,b)
         {
@@ -285,7 +285,7 @@ Plantilla.imprimeOrdenadorAlfabeticamente = function(vector,campo){
             }
             return 0;
         });
-        vector.forEach(e => msj += Plantilla.plantillaTablaPersonas.actualiza(e))
+        vector.forEach(e => msj += Plantilla.plantillaTablaPersonas.actualiza2(e))
     }
         msj += Plantilla.plantillaTablaPersonas.pie
         // Para comprobar lo que hay en vector
