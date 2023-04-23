@@ -9,7 +9,16 @@
 
 /// Creo el espacio de nombres
 let Plantilla = {};
-
+/// Nombre de los campos del formulario para editar una persona
+Plantilla.form = {
+    NOMBRE: "form-persona-nombre",
+    APELLIDOS: "form-persona-apellidos",
+    POSICION: "form-persona-posicion",
+   // FECHADENACIMIENTO: "form-persona-fechaNacimiento",
+    CASAHODWARTS: "form-persona-casaHodwats",
+    COPASMUNDIALES: "form-persona-copasMundiales",
+    TIPOESCOBA:"form-persona-tipoEscoba"
+}
 /// Plantilla para poner los datos de varias personas dentro de una tabla
 Plantilla.plantillaTablaPersonas = {}
 
@@ -61,25 +70,25 @@ Plantilla.plantillaFormularioPersona.formulario = `
                 <td><input type="text" class="form-persona-elemento" disabled id="form-persona-id"
                         value="${Plantilla.plantillaTags.ID}" 
                         name="id_persona"/></td>
-                <td><input type="text" class="form-persona-elemento editable" disabled
+                <td><input type="text" class="form-persona-elemento editable" disabled 
                         id="form-persona-nombre" required value="${Plantilla.plantillaTags.NOMBRE}" 
                         name="nombre_persona"/></td>
-                <td><input type="text" class="form-persona-elemento editable" disabled
+                <td><input type="text" class="form-persona-elemento editable" disabled 
                         id="form-persona-apellidos" value="${Plantilla.plantillaTags.APELLIDOS}" 
                         name="apellidos_persona"/></td>
-                <td><input type="text" class="form-persona-elemento editable" disabled
+                <td><input type="text" class="form-persona-elemento editable" disabled 
                         id="form-persona-posicion" required value="${Plantilla.plantillaTags.POSICION}" 
                         name="posicion_persona"/></td>
-                <td><input type="text" class="form-persona-elemento" disabled 
+                <td><input type="text" class="form-persona-elemento"  disabled
                         id="form-persona-fechaNacimiento" required value="${Plantilla.plantillaTags.FECHADENACIMIENTO}" 
                         name="fechaNacimiento_persona"/></td>
-                          <td><input type="text" class="form-persona-elemento editable"  disabled
+                          <td><input type="text" class="form-persona-elemento editable"  disabled 
                         id="form-persona-casaHodwats" required value="${Plantilla.plantillaTags.CASAHODWARTS}" 
                         name="casaHodwarts"/></td>
-                 <td><input type="text" class="form-persona-elemento editable" disabled
+                 <td><input type="text" class="form-persona-elemento editable" disabled 
                         id="form-persona-copasMundiales" required value="${Plantilla.plantillaTags.COPASMUNDIALES}" 
                         name="copasMundiales_persona"/></td>
-                <td width="20%"><input type="text" class="form-persona-elemento editable"  disabled
+                <td width="20%"><input type="text" class="form-persona-elemento editable"  disabled 
                         id="form-persona-tipoEscoba" required value="${Plantilla.plantillaTags.TIPOESCOBA}" 
                         name="tipoEscoba_persona"/></td>
                 <td>
