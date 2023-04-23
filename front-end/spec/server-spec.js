@@ -50,7 +50,7 @@ describe('Servidor FRONT-END:', () => {
               })
               .end((error) => { error ? done.fail(error) : done() })
       });
-      it('Cualquier otra ruta, como : /patata/consome/zanahoria también index.html', (done) => {
+      it('Cualquier otra ruta, como : /Quidditch/getPorId/360436964015472845 también index.html', (done) => {
           supertest(app)
               .get('/Quidditch/getPorId/360436964015472845')
               .expect(200)

@@ -37,7 +37,7 @@ describe('API Gateway: rutas estáticas', () => {
           assert(res.body.mensaje === "Microservicio MS Plantilla: acerca de");
             assert(res.body.autor === "Eva");
             assert(res.body.email === "etm00016@red.ujaen.es");
-            assert(res.body.fecha === "28/03/2023");
+            assert(res.body.fecha === "16/12/1999");
 
         })
         .end((error) => { error ? done.fail(error) : done() })
@@ -55,7 +55,7 @@ describe('API Gateway: acceso a ', () => {
                 .expect('Content-Type', /json/)
                 .expect(function (res) {
                     //console.log( "Get Todos Personas", res.body ); // Para comprobar qué contiene exactamente res.body
-                    assert(res.body.data[0].data.hasOwnProperty('id'));
+                    assert(res.body.data[0].data.hasOwnProperty('casaHogwarts'));
                     assert(res.body.data[2].data.nombre === "Fran");
                     assert(res.body.data.length === 11);
 
@@ -70,7 +70,6 @@ describe('API Gateway: acceso a ', () => {
                 .expect('Content-Type', /json/)
                 .expect(function (res) {
                      //console.log( "getPorId Persona", res.body ); // Para comprobar qué contiene exactamente res.body
-                    assert(res.body.hasOwnProperty('data'));
                     assert(res.body.data.hasOwnProperty('casaHogwarts'));
                     assert(res.body.data.casaHogwarts === "Gryffindor");
                 })

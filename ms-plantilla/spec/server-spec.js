@@ -43,7 +43,7 @@ describe('Servidor PLANTILLA:', () => {
           assert(res.body.mensaje === "Microservicio MS Plantilla: acerca de");
           assert(res.body.autor === "Eva");
           assert(res.body.email === "etm00016@red.ujaen.es");
-          assert(res.body.fecha === "28/03/2023");
+          assert(res.body.fecha === "16/12/1999");
 
         })
         .end((error) => { error ? done.fail(error) : done() })

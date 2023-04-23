@@ -179,7 +179,7 @@ const CB_OTHERS = {
                 mensaje: "Microservicio MS Plantilla: acerca de",
                 autor: "Eva",
                 email: "etm00016@red.ujaen.es",
-                fecha: "28/03/2023"
+                fecha: "16/12/1999"
             });
         } catch (error) {
             CORS(res).status(500).json({ error: error.description })

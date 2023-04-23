@@ -7,12 +7,14 @@
 
 
 
+/* Dropdown */
 .dropdown {
     position: relative;
     display: inline-block;
+
 }
 
-.dropbtn {
+.dropdown .dropbtn {
     background-color: rgba(100, 100, 100, 0.5);
     color: white;
     padding: 12px;
@@ -31,10 +33,10 @@
 }
 
 .dropdown-content a {
+    display: block;
     color: black;
     padding: 12px 16px;
     text-decoration: none;
-    display: block;
 }
 
 .dropdown-content a:hover {
@@ -45,31 +47,33 @@
     display: block;
 }
 
+/* Tabla */
 table.listado-personas {
     width: 100%;
     border: 1px solid rgba(0, 0, 100, 0.8);
+    text-align: center;
+    margin: 0 auto;
 }
 
 table.listado-personas thead th {
-    margin: 3px;
-    height: 2.5em;
     background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    height: 2.5em;
     text-transform: uppercase;
-
+    margin: 3px;
 }
 
 table.listado-personas tbody td {
     padding: 0.5em;
-    text-align: center;
 }
 
 table.listado-personas tbody tr {
-    margin: 3px;
+    background-color: rgba(0, 0, 100, 0.1);
     height: 2em;
-    background-color: rgba(0, 0, 100, 0.1)
+    margin: 3px;
 }
 
-
+/* Formulario */
 .form-persona-elemento:disabled {
     color: black;
     background-color: inherit;
@@ -78,22 +82,33 @@ table.listado-personas tbody tr {
 }
 
 .form-persona-elemento:enabled {
-    color:rgba(0, 0, 100, 0.8);
+    color: rgba(0, 0, 100, 0.8);
 }
 
 .form-persona-elemento:enabled:required {
-    color:rgba(100, 0, 0, 0.8);
+    color: rgba(100, 0, 0, 0.8);
 }
 
-table.listado-personas thead,
-table.listado-personas tbody,
-table.listado-personas tr,
-table.listado-personas td {
-    text-align: center;
-    margin: 0 auto 0 auto;
+/* Campo de búsqueda */
+#campo-busqueda {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+
 }
 
-table.listado-personas {
-    width: 100%;
+/* Botón de búsqueda */
+.btn {
+    padding: 10px 20px;
+    background-color: #133e46;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
+.btn:hover {
+    background-color: #1c7774;
+}

@@ -33,7 +33,7 @@
         <a href="javascript:Plantilla.listar3('nombre')" class="opcion-principal mostrar"
            title="Realiza un listado de todas las personas que hay en la BBDD">Listar alfabeticamente por nombre </a>
         <div class="dropdown">
-            <button class="dropbtn">Opciones de listar datos por </button>
+            <button class="opcion-principal">Opciones de listar datos por </button>
             <div class="dropdown-content">
                 <a href="javascript:Plantilla.listar3('nombre')" class="opcion-principal"
                    title="Realizar un listado de todos los nombres de todos los jugadores que hay en la BBDD ordenados alfabeticamente">nombre alfabeticamente  </a>
@@ -48,9 +48,13 @@
                 <a href="javascript:Plantilla.listar3('posicion')" class="opcion-principal"
                    title="Realizar un listado de todos los nombres de todos los jugadores que hay en la BBDD ordenados alfabeticamente">posicion alfabeticamente</a>
             </div>
+
+        </div>
+        <div style="padding-top: 30px">
             <input type = "text" id="campo-busqueda">
             <button class="btn" onclick="Plantilla.jugadorBuscado(document.getElementById('campo-busqueda').value)">Buscar por nombre</button>
         </div>
+
     </nav>
 
     <!-- 
