@@ -47,8 +47,9 @@
                    title="Realizar un listado de todos los nombres de todos los jugadores que hay en la BBDD ordenados alfabeticamente">tipo de escoba alfabeticamente </a>
                 <a href="javascript:Plantilla.listar3('posicion')" class="opcion-principal"
                    title="Realizar un listado de todos los nombres de todos los jugadores que hay en la BBDD ordenados alfabeticamente">posicion alfabeticamente</a>
-
             </div>
+            <input type = "text" id="campo-busqueda">
+            <button class="btn" onclick="Plantilla.jugadorBuscado(document.getElementById('campo-busqueda').value)">Buscar por nombre</button>
         </div>
     </nav>
 

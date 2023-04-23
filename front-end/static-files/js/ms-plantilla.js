@@ -637,3 +637,33 @@ Plantilla.guardar = async function () {
         //console.error(error)
     }
 }
+
+/**
+ * Función que muestre el jugador con el nombre indicado
+ */
+
+Plantilla.jugadorBuscado = function (nombreBuscado){
+    this.recuperaJugadorBuscado(nombreBuscado, this.imprimeMuchasPersonas);
+}
+
+/**
+ * Función que recuperar todas las personas llamando al MS Personas.
+ * Posteriormente, llama a la función callBackFn para trabajar con los datos recuperados.
+ * @param {String} idPersona Identificador de la persona a mostrar
+ * @param {función} callBackFn Función a la que se llamará una vez recibidos los datos.
+ */
+Plantilla.recuperaJugadorBuscado = async function (nombreBuscado, callBackFn) {
+    try {
+        const url = Frontend.API_GATEWAY + "/Quidditch/getTodas"
+        const response = await fetch(url);
+        let vectorJugadores = null
+        if (response) {
+            const vectorJugadores = await response.json()
+            const filtro = vectorJugadores.data.filter(persona => persona.data.nombre === nombreBuscado)
+            callBackFn(filtro)
+        }
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway para recuperar Jugador Buscado")
+        console.error(error)
+    }
+}
