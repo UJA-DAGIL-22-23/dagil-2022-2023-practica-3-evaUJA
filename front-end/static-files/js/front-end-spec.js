@@ -61,3 +61,80 @@ describe("Frontend.Article.actualizar: ", function () {
         })
 
 })
+
+describe("Frontend.Article.mostrar", function() {
+
+
+    it("should remove the Frontend.CLASS_OCULTAR class from the HTML element", function() {
+        let element = document.createElement("div");
+        element.classList.add(Frontend.CLASS_OCULTAR);
+        spyOn(document, "getElementById").and.returnValue(element);
+        Frontend.Article.mostrar();
+        expect(element.classList.contains(Frontend.CLASS_OCULTAR)).toBe(false);
+    });
+
+    it("should add the Frontend.CLASS_MOSTRAR class to the HTML element", function() {
+        let element = document.createElement("div");
+        spyOn(document, "getElementById").and.returnValue(element);
+        Frontend.Article.mostrar();
+        expect(element.classList.contains(Frontend.CLASS_MOSTRAR)).toBe(true);
+    });
+});
+
+describe("Frontend.aniadirClase", function() {
+    let element;
+    beforeEach(function() {
+        element = document.createElement("div");
+        element.setAttribute("id", "testElement");
+        document.body.appendChild(element);
+    });
+
+    afterEach(function() {
+        document.body.removeChild(element);
+        element = null;
+    });
+
+    it("should add a class to the HTML element", function() {
+        Frontend.aniadirClase(element, "testClass");
+        expect(element.classList.contains("testClass")).toBe(true);
+    });
+
+    it("should not add the same class twice to the HTML element", function() {
+        element.classList.add("testClass");
+        Frontend.aniadirClase(element, "testClass");
+        let classList = element.getAttribute("class").split(" ");
+        let count = 0;
+        for (let i = 0; i < classList.length; i++) {
+            if (classList[i] === "testClass") {
+                count++;
+            }
+        }
+        expect(count).toBe(1);
+    });
+
+    it("should get the HTML element by ID if the first parameter is a string", function() {
+        spyOn(document, "getElementById").and.callThrough();
+        Frontend.aniadirClase("testElement", "testClass");
+        expect(document.getElementById).toHaveBeenCalledWith("testElement");
+    });
+
+    it("should return the 'this' object", function() {
+        let result = Frontend.aniadirClase(element, "testClass");
+        expect(result).toBe(Frontend);
+    });
+});
+
+describe("Frontend.quitarClase", function() {
+    it("debería quitar la clase indicada del elemento", function() {
+        // Creamos el elemento y le agregamos una clase
+        const elemento = document.createElement("div");
+        elemento.classList.add("clase1");
+
+        // Ejecutamos la función para quitar la clase
+        Frontend.quitarClase(elemento, "clase1");
+
+        // Comprobamos que la clase fue eliminada
+        expect(elemento.classList.contains("clase1")).toBeFalsy();
+    });
+
+});

@@ -17,6 +17,7 @@ const LISTADO_IMPRIMIR_MUCHAS_PERSONAS_ALFABETICAMENTE="Listado de personas orde
 const CEREAR = "cerear"
 const LISTADO_NOMBRE_MUCHAS_PERSONAS ="Listado de personas solo con su nombre"
 const LISTADO_UNA_PERSONA="Mostrar una persona"
+const LISTADO_NOMBRE_MUCHAS_PERSONAS_TODOS_DATOS = "Listado de personas ordenadas alfabeticamente con todos sus datos"
 
 
 const datosDescargadosPrueba = {
@@ -198,28 +199,139 @@ describe("Plantilla.imprimeNombreMuchasPersonas: ", function (){
             expect(elementoTitulo.innerHTML).toBe(LISTADO_NOMBRE_MUCHAS_PERSONAS)
 
         })
-
 })
-//PREGUNTAR
+
+describe("Plantilla.imprimeOrdenadorAlfabeticamenteTodosCampos", function() {
+        it("muestra datos nulos cuando le pasamos un valor nulo",
+            function () {
+                Plantilla.imprimeOrdenadorAlfabeticamenteTodosCampos([])
+                expect(elementoTitulo.innerHTML).toBe(LISTADO_NOMBRE_MUCHAS_PERSONAS_TODOS_DATOS)
+
+            })
+        it("muestra datos nulos cuando le pasamos un valor no nulo ",
+            function () {
+                Plantilla.imprimeOrdenadorAlfabeticamenteTodosCampos(15)
+                expect(elementoTitulo.innerHTML).toBe(LISTADO_NOMBRE_MUCHAS_PERSONAS_TODOS_DATOS)
+
+            })
+    })
+
+describe("Plantilla.recuperaJugadoBuscado", function(){
+    it("devuelve un vector vacio cuando no se encuentra en jugador buscado", async function(){
+        const callBackFn = function(resultado){
+            expect(resultado).toEqual([]);
+        }
+        await Plantilla.recuperaJugadorBuscado("Jugador Inexistente",callBackFn);
+    })
+})
+
+describe("Plantilla.habilitarDeshabilitarCamposEditables", function() {
+    beforeEach(function() {
+        // Crea un objeto de prueba con los campos de formulario
+        Plantilla.form = {
+            campo1: "campo1",
+            campo2: "campo2",
+            campo3: "campo3"
+        };
+
+        // Crea un objeto DOM de prueba
+        var form = document.createElement("form");
+        form.innerHTML = `
+      <input id="campo1" />
+      <input id="campo2" />
+      <input id="campo3" />
+    `;
+        document.body.appendChild(form);
+    });
+
+    it("debe deshabilitar los campos editables cuando se llama con true", function() {
+        // Llama a la función con true
+        Plantilla.habilitarDeshabilitarCamposEditables(true);
+
+        // Verifica que todos los campos de formulario están deshabilitados
+        expect(document.getElementById("campo1").disabled).toEqual(true);
+        expect(document.getElementById("campo2").disabled).toEqual(true);
+        expect(document.getElementById("campo3").disabled).toEqual(true);
+    });
+
+    it("debe habilitar los campos editables cuando se llama con false", function() {
+        // Llama a la función con false
+        Plantilla.habilitarDeshabilitarCamposEditables(false);
+
+        // Verifica que todos los campos de formulario están habilitados
+        expect(document.getElementById("campo1").disabled).toEqual(false);
+        expect(document.getElementById("campo2").disabled).toEqual(false);
+        expect(document.getElementById("campo3").disabled).toEqual(false);
+    });
+
+    it("debe deshabilitar los campos editables cuando se llama sin argumentos", function() {
+        // Llama a la función sin argumentos
+        Plantilla.habilitarDeshabilitarCamposEditables();
+
+        // Verifica que todos los campos de formulario están deshabilitados
+        expect(document.getElementById("campo1").disabled).toEqual(true);
+        expect(document.getElementById("campo2").disabled).toEqual(true);
+        expect(document.getElementById("campo3").disabled).toEqual(true);
+    });
+});
+
+describe("Plantilla.recuperaJugadorBuscado", function() {
+
+    it("debería llamar al callback con el jugador encontrado", async function() {
+        // Arrange
+        const nombreBuscado = "Harry Potter";
+        const vectorJugadores = {
+            data: [
+                { data: { nombre: "Ron Weasley" } },
+                { data: { nombre: "Hermione Granger" } },
+                { data: { nombre: "Harry Potter" } },
+            ]
+        };
+        const fetchSpy = spyOn(window, "fetch").and.returnValue(Promise.resolve({
+            json: () => Promise.resolve(vectorJugadores),
+        }));
+        const callBackSpy = jasmine.createSpy("callBackSpy");
+
+        // Act
+        await Plantilla.recuperaJugadorBuscado(nombreBuscado, callBackSpy);
+
+        // Assert
+        expect(fetchSpy).toHaveBeenCalledWith(Frontend.API_GATEWAY + "/Quidditch/getTodas");
+        expect(callBackSpy).toHaveBeenCalledWith([{ data: { nombre: "Harry Potter" } }]);
+    });
+
+    it("debería mostrar un mensaje de error en caso de fallo en la conexión", async function() {
+        // Arrange
+        const nombreBuscado = "Harry Potter";
+        const fetchSpy = spyOn(window, "fetch").and.returnValue(Promise.reject("Error de conexión"));
+        const alertSpy = spyOn(window, "alert");
+        const consoleSpy = spyOn(console, "error");
+        const callBackSpy = jasmine.createSpy("callBackSpy");
+
+        // Act
+        await Plantilla.recuperaJugadorBuscado(nombreBuscado, callBackSpy);
+
+        // Assert
+        expect(fetchSpy).toHaveBeenCalledWith(Frontend.API_GATEWAY + "/Quidditch/getTodas");
+        expect(callBackSpy).not.toHaveBeenCalled();
+        expect(alertSpy).toHaveBeenCalledWith("Error: No se han podido acceder al API Gateway para recuperar Jugador Buscado");
+        expect(consoleSpy).toHaveBeenCalledWith("Error de conexión");
+    });
+
+});
 /*
-describe("Plantilla.imprimeUnaPersona: ", function (){
-    it("muestra datos nulos cuando le pasamos un valor nulo",
-        function () {
-            Plantilla.imprimeUnaPersona([])
-            expect(elementoTitulo.innerHTML).toBe(LISTADO_UNA_PERSONA)
+describe('Plantilla.recuperaDatosAlmacenados', function() {
+    it('should return the stored persona object', function() {
+        const mockPersona = { id: 1, name: 'Harry Potter' };
+        Plantilla.personaMostrada = mockPersona;
 
-        })
-    it("muestra datos nulos cuando le pasamos un valor no nulo ",
-        function () {
-            Plantilla.imprimeUnaPersona(15)
-            expect(elementoTitulo.innerHTML).toBe(LISTADO_UNA_PERSONA)
+        const result = Plantilla.recuperaDatosAlmacenados();
 
-        })
+        expect(result).toEqual(mockPersona);
+    });
+});
 
-})*/
-
-
-
+*/
 /*
 IMPORTANTE
 ==========

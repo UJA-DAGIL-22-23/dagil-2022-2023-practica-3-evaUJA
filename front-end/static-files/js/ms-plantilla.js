@@ -260,7 +260,6 @@ Plantilla.imprimeNombreMuchasPersonas = function (vector) {
 
 Plantilla.imprimeOrdenadorAlfabeticamente = function(vector,campo){
 
-
         //console.log(vector) // Para comprobar lo que hay en vector
 
         // Compongo el contenido que se va a mostrar dentro de la tabla
@@ -407,7 +406,6 @@ Plantilla.listar2 = function () {
 Plantilla.listar3 = function (campo) {
     Plantilla.recupera(Plantilla.imprimeOrdenadorAlfabeticamente,campo);
 }
-
 
 Plantilla.listar4 = function (campo) {
     Plantilla.recupera(Plantilla.imprimeOrdenadorAlfabeticamenteTodosCampos,campo);
