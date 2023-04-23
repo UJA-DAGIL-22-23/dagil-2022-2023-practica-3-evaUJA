@@ -83,9 +83,9 @@ Plantilla.plantillaFormularioPersona.formulario = `
                         id="form-persona-tipoEscoba" required value="${Plantilla.plantillaTags.TIPOESCOBA}" 
                         name="tipoEscoba_persona"/></td>
                 <td>
-                    <div><a href="javascript:Personas.editar()" class="opcion-secundaria mostrar">Editar</a></div>
-                    <div><a href="javascript:Personas.guardar()" class="opcion-terciaria editar ocultar">Guardar</a></div>
-                    <div><a href="javascript:Personas.cancelar()" class="opcion-terciaria editar ocultar">Cancelar</a></div>
+                    <div><a href="javascript:Plantilla.editar()" class="opcion-secundaria mostrar">Editar</a></div>
+                    <div><a href="javascript:Plantilla.guardar()" class="opcion-terciaria editar ocultar">Guardar</a></div>
+                    <div><a href="javascript:Plantilla.cancelar()" class="opcion-terciaria editar ocultar">Cancelar</a></div>
                 </td>
             </tr>
         </tbody>
