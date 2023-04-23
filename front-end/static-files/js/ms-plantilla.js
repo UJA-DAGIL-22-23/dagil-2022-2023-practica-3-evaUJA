@@ -294,6 +294,41 @@ Plantilla.imprimeOrdenadorAlfabeticamente = function(vector,campo){
 
 }
 
+
+Plantilla.imprimeOrdenadorAlfabeticamenteTodosCampos = function(vector,campo){
+
+    //console.log(vector) // Para comprobar lo que hay en vector
+    // Compongo el contenido que se va a mostrar dentro de la tabla
+    let msj = Plantilla.plantillaTablaPersonas.cabecera
+    if (vector && Array.isArray(vector)) {
+        vector.sort(function(a,b)
+        {
+            let campoA = null; //= a.data[campo].toUpperCase();
+            let campoB = null;  //= b.data[campo].toUpperCase();
+            if(campo == 'fechaNacimiento'){
+                campoA = a.data[campo].annio + "" +  Plantilla.cerear(a.data[campo].mes) + ""+ Plantilla.cerear(a.data[campo].dia)
+                campoB = b.data[campo].annio + "" +   Plantilla.cerear(b.data[campo].mes) + ""+ Plantilla.cerear(b.data[campo].dia)
+            }else{
+                campoA = a.data[campo].toUpperCase();
+                campoB = b.data[campo].toUpperCase();
+            }
+            if (campoA < campoB) {
+                return -1;
+            }
+            if (campoA > campoB) {
+                return 1;
+            }
+            return 0;
+        });
+        vector.forEach(e => msj += Plantilla.plantillaTablaPersonas.actualiza(e))
+    }
+    msj += Plantilla.plantillaTablaPersonas.pie
+    // Para comprobar lo que hay en vector
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Listado de personas ordenadas alfabeticamente con todos sus datos", msj)
+
+}
+
 /**
  * Actualiza el cuerpo de la tabla con los datos de la persona que se le pasa
  * @param {Persona} Persona Objeto con los datos de la persona que queremos escribir en el TR
@@ -373,6 +408,10 @@ Plantilla.listar3 = function (campo) {
     Plantilla.recupera(Plantilla.imprimeOrdenadorAlfabeticamente,campo);
 }
 
+
+Plantilla.listar4 = function (campo) {
+    Plantilla.recupera(Plantilla.imprimeOrdenadorAlfabeticamenteTodosCampos,campo);
+}
 
 // Elemento TR que muestra los datos de una persona
 Plantilla.plantillaTablaPersonas.cuerpo = `
