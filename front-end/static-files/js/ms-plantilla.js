@@ -588,7 +588,7 @@ Plantilla.recuperaDatosAlmacenados = function () {
  */
 Plantilla.guardar = async function () {
     try {
-        let url = Frontend.API_GATEWAY + "/personas/setTodo/"
+        let url = Frontend.API_GATEWAY + "/Quidditch/setTodo/"
         let id_persona = document.getElementById("form-persona-id").value
         const response = await fetch(url, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -606,7 +606,7 @@ Plantilla.guardar = async function () {
                 "apellidos_persona": document.getElementById("form-persona-apellidos").value,
                 "posicion_persona": document.getElementById("form-persona-posicion").value,
                 "fechaNacimiento_persona": document.getElementById("form-persona-fechaNacimiento").value,
-                "casaHodwarts": document.getElementById("form-persona-casaHodwats").value,
+                "casaHodwarts_persona": document.getElementById("form-persona-casaHodwats").value,
                 "copasMundiales_persona": document.getElementById("form-persona-copasMundiales").value,
                 "tipoEscoba_persona": document.getElementById("form-persona-tipoEscoba").value
             }), // body data type must match "Content-Type" header
