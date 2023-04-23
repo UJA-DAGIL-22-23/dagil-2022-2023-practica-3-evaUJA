@@ -604,8 +604,11 @@ Plantilla.guardar = async function () {
                 "id_persona": id_persona,
                 "nombre_persona": document.getElementById("form-persona-nombre").value,
                 "apellidos_persona": document.getElementById("form-persona-apellidos").value,
-                "email_persona": document.getElementById("form-persona-email").value,
-                "año_entrada_persona": document.getElementById("form-persona-anio").value
+                "posicion_persona": document.getElementById("form-persona-posicion").value,
+                "fechaNacimiento_persona": document.getElementById("form-persona-fechaNacimiento").value,
+                "casaHodwarts": document.getElementById("form-persona-casaHodwats").value,
+                "copasMundiales_persona": document.getElementById("form-persona-copasMundiales").value,
+                "tipoEscoba_persona": document.getElementById("form-persona-tipoEscoba").value
             }), // body data type must match "Content-Type" header
         })
         /*
