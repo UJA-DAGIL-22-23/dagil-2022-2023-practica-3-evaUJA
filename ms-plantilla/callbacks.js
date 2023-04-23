@@ -124,7 +124,7 @@ const CB_MODEL_SELECTS = {
                             nombre: data.nombre_persona,
                             apellidos: data.apellidos_persona,
                             posicion : data.posicion_persona,
-                             fechaNacimiento: data.fechaNacimiento_persona,
+                          //  fechaNacimiento: data.fechaNacimiento_persona, // no cambio la fecha
                             casaHogwarts: data.casaHodwarts_persona,
                             copasMundiales: data.copasMundiales_persona,
                             tipoEscoba :data.tipoEscoba_persona

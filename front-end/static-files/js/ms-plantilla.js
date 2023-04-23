@@ -61,25 +61,25 @@ Plantilla.plantillaFormularioPersona.formulario = `
                 <td><input type="text" class="form-persona-elemento" disabled id="form-persona-id"
                         value="${Plantilla.plantillaTags.ID}" 
                         name="id_persona"/></td>
-                <td><input type="text" class="form-persona-elemento editable" 
+                <td><input type="text" class="form-persona-elemento editable" disabled
                         id="form-persona-nombre" required value="${Plantilla.plantillaTags.NOMBRE}" 
                         name="nombre_persona"/></td>
-                <td><input type="text" class="form-persona-elemento editable" 
+                <td><input type="text" class="form-persona-elemento editable" disabled
                         id="form-persona-apellidos" value="${Plantilla.plantillaTags.APELLIDOS}" 
                         name="apellidos_persona"/></td>
-                <td><input type="text" class="form-persona-elemento editable" 
+                <td><input type="text" class="form-persona-elemento editable" disabled
                         id="form-persona-posicion" required value="${Plantilla.plantillaTags.POSICION}" 
                         name="posicion_persona"/></td>
-                <td><input type="text" class="form-persona-elemento editable" disabled
+                <td><input type="text" class="form-persona-elemento" disabled 
                         id="form-persona-fechaNacimiento" required value="${Plantilla.plantillaTags.FECHADENACIMIENTO}" 
                         name="fechaNacimiento_persona"/></td>
-                          <td><input type="text" class="form-persona-elemento editable" 
+                          <td><input type="text" class="form-persona-elemento editable"  disabled
                         id="form-persona-casaHodwats" required value="${Plantilla.plantillaTags.CASAHODWARTS}" 
                         name="casaHodwarts"/></td>
                  <td><input type="text" class="form-persona-elemento editable" disabled
                         id="form-persona-copasMundiales" required value="${Plantilla.plantillaTags.COPASMUNDIALES}" 
                         name="copasMundiales_persona"/></td>
-                <td width="20%"><input type="text" class="form-persona-elemento editable" 
+                <td width="20%"><input type="text" class="form-persona-elemento editable"  disabled
                         id="form-persona-tipoEscoba" required value="${Plantilla.plantillaTags.TIPOESCOBA}" 
                         name="tipoEscoba_persona"/></td>
                 <td>
@@ -590,6 +590,7 @@ Plantilla.guardar = async function () {
     try {
         let url = Frontend.API_GATEWAY + "/Quidditch/setTodo/"
         let id_persona = document.getElementById("form-persona-id").value
+        let fechaNacimiento_persona =  document.getElementById("form-persona-fechaNacimiento").value
         const response = await fetch(url, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             mode: 'no-cors', // no-cors, cors, *same-origin
@@ -605,10 +606,12 @@ Plantilla.guardar = async function () {
                 "nombre_persona": document.getElementById("form-persona-nombre").value,
                 "apellidos_persona": document.getElementById("form-persona-apellidos").value,
                 "posicion_persona": document.getElementById("form-persona-posicion").value,
-                "fechaNacimiento_persona": document.getElementById("form-persona-fechaNacimiento").value,
+               "fechaNacimiento_persona": fechaNacimiento_persona,
                 "casaHodwarts_persona": document.getElementById("form-persona-casaHodwats").value,
                 "copasMundiales_persona": document.getElementById("form-persona-copasMundiales").value,
                 "tipoEscoba_persona": document.getElementById("form-persona-tipoEscoba").value
+
+
             }), // body data type must match "Content-Type" header
         })
         /*
