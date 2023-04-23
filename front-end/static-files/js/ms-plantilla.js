@@ -116,7 +116,7 @@ Plantilla.plantillaTablaPersonas.cabecera = `<table width="100%" class="listado-
                         <th width="20%">CopasMundiales</th>
                          <th width="10%">TipoEscoba</th>
                    
-
+                        <th width="10%">Acciones</th>
                     </thead>
                     <tbody>
     `;
