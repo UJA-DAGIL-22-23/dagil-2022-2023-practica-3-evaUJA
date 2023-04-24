@@ -445,11 +445,11 @@ Además, incluye documentación sobre dicho código y un vídeo descriptivo de c
 # Resolución de la práctica 
 Tablero Trello: https://trello.com/b/PM5WVvmT/practica3
 ## Capturas de Fauna 
-<img src='/Trello/Capturas/fauna01.JPG' width='700px'/>  
+<img src='/Fauna/fauna01.JPG' width='700px'/>  
 
-<img src='/Trello/Capturas/Fauna02.JPG' width='700px'/>  
+<img src='/Fauna/Fauna02.JPG' width='700px'/>  
 
-<img src='/Trello/Capturas/Fauna03.JPG' width='700px'/>
+<img src='/Fauna/Fauna03.JPG' width='700px'/>
 
 ## Incremento 1 (HU 01,02,03,04,05,06) 
 
@@ -458,18 +458,18 @@ En mi primer incremento han estado practicamente todas las funciones de listar, 
 El orden que he seguido para hacer esta iteración ha sido el siguiente: 01 -> 04 -> 03 -> 02 -> 05 -> 06 
 
 #### Al principio de mi iteración mi tablero Trello se veía así: 
-<img src='/Fauna/TrelloInicial01.JPG' width='700px'/>  
-<img src='/Fauna/TrelloInicial02.JPG' width='700px'/>  
+<img src='/Trello/TrelloInicial01.JPG' width='700px'/>  
+<img src='/Trello/TrelloInicial02.JPG' width='700px'/>  
 
 
 #### A lo largo de las iteraciones se ha visto así: 
-<img src='/Fauna/Trello04.JPG' width='700px'/>  
-<img src='/Fauna/Trello02.JPG' width='700px'/> 
-<img src='/Fauna/Trello03.JPG' width='700px'/>  
-<img src='/Fauna/Trello05.JPG' width='700px'/> 
+<img src='/Trello/Trello04.JPG' width='700px'/>  
+<img src='/Trello/Trello02.JPG' width='700px'/> 
+<img src='/Trello/Trello03.JPG' width='700px'/>  
+<img src='/Trello/Trello05.JPG' width='700px'/> 
 
 #### Y al final de la iteración mi tablero Trello se vé así, con mi última historia de usuario (HU 6): 
-<img src='/Fauna/06.JPG' width='700px'/> 
+<img src='/Trello/06.JPG' width='700px'/> 
 
 ### HU 01: Ver la información del autor/autora de la aplicación al pulsar en el botón “Acerca de”
 
@@ -500,6 +500,15 @@ Como podemos observar, al picharle en: "Ordenar por fecha de Nacimiento", se ord
 <img src='/Interfaz/06Mostrar.JPG' width='700px'/>  
 
 ## Incremento 2 (HU 08, 13) 
+
+#### Al principio de mi iteración mi tablero Trello se veía así: 
+<img src='/Trello/inicioIteracion2.JPG' width='700px'/>  
+
+#### A lo largo de las iteraciones se ha visto así: 
+<img src='/Trello/penultima.JPG' width='700px'/>  
+
+#### Y al final de la iteración mi tablero Trello se vé así, con mi última historia de usuario (HU 6): 
+<img src='/Trello/ultima.JPG' width='700px'/> 
 
 En este incremento, empecé con ambos a la vez, pensé que había terminado la HU 08 antes de la HU 13, pero fue al revés, ya que me dio el siguiente bug en ultimo momento que traté de solucionar después de hacer la HU 08.
 
@@ -579,3 +588,4 @@ Entonces al mostrar una persona ya me salen los campos así ahora mismo, aunque 
 ### HU 08. Ver un listado de todos los datos de jugadores/equipos cuyo nombre cumple con un criterio de búsqueda indicado por el usuario.  (Por ejemplo: buscar todos aquellos cuyo nombre incluye “Antonio”).
 
 <img src='/Interfaz/08JPG.JPG' width='700px'/>  
+
