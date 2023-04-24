@@ -457,4 +457,18 @@ En mi primer incremento han estado practicamente todas las funciones de listar, 
 
 ### HU 01: Ver la información del autor/autora de la aplicación al pulsar en el botón “Acerca de”
 
+<img src='/Interfaz/01AcercaDe.JPG' width='700px'/>  
 
+<img src='/Interfaz/02ListadoNombres.JPG' width='700px'/>  
+
+<img src='/Interfaz/03NombreAlfabeticamente.JPG' width='700px'/>  
+
+<img src='/Interfaz/04ListadoTodo.JPG' width='700px'/>  
+
+<img src='/Interfaz/05.JPG' width='700px'/>  
+
+<img src='/Interfaz/05FechaNacimientoJPG.JPG' width='700px'/>  
+
+<img src='/Interfaz/01AcercaDe.JPG' width='700px'/>  
+
+<img src='/Interfaz/06Mostrar.JPG' width='700px'/>  
