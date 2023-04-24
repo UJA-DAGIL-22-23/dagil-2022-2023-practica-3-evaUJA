@@ -455,6 +455,38 @@ Tablero Trello: https://trello.com/b/PM5WVvmT/practica3
 
 En mi primer incremento han estado practicamente todas las funciones de listar, ya que estas eran muy parecidas unas a otras y se me hizo relativamente facil, una vez hecho la primera seguir haciendo las demás. 
 
+El orden que he seguido para hacer esta iteración ha sido el siguiente: 01 -> 04 -> 03 -> 02 -> 05 -> 06 
+
+Al principio de mi iteración mi tablero Trello se veía así: 
+
+Y al final de la iteración mi tablero Trello se vé así: 
+
 ### HU 01: Ver la información del autor/autora de la aplicación al pulsar en el botón “Acerca de”
+
+<img src='/Interfaz/01AcercaDe.JPG' width='700px'/>  
+
+### HU 02 . Ver un listado solo con los nombres de todos los jugadores/equipos
+
+<img src='/Interfaz/02ListadoNombres.JPG' width='700px'/>  
+
+### HU 03 . Ver un listado solo con los nombres de todos los jugadores/equipos ordenados alfabéticamente
+
+<img src='/Interfaz/03NombreAlfabeticamente.JPG' width='700px'/>  
+
+### HU 04 . Ver un listado con todos los datos de todos los jugadores/equipos
+
+<img src='/Interfaz/04ListadoTodo.JPG' width='700px'/>  
+
+### HU 05 . Ver un listado con todos los datos de todos los jugadores/equipos ordenado por el campo del jugador/equipo que el usuario desee.
+
+Como podemos observar, al picharle en: "Ordenar por fecha de Nacimiento", se ordena correctamente: 
+
+<img src='/Interfaz/05.JPG' width='700px'/>  
+
+<img src='/Interfaz/05FechaNacimientoJPG.JPG' width='700px'/>  
+
+### HU 06 . Ver todos los datos de un determinado jugador/equipo.
+
+<img src='/Interfaz/06Mostrar.JPG' width='700px'/>  
 
 
