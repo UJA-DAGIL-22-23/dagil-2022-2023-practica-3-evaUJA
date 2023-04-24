@@ -501,7 +501,7 @@ Como podemos observar, al picharle en: "Ordenar por fecha de Nacimiento", se ord
 
 ## Incremento 2 (HU 08, 13) 
 
-En este incremento, empecé con ambos a la vez, pensé que había terminado la HU 08 antes de la HU 13, pero fue al revés, ya que me dio el siguiente bug en ultimo momento que traté de solucionar después de hacer la HU 13.
+En este incremento, empecé con ambos a la vez, pensé que había terminado la HU 08 antes de la HU 13, pero fue al revés, ya que me dio el siguiente bug en ultimo momento que traté de solucionar después de hacer la HU 08.
 
 dejó de funcionarme bien la parte de css de la función que pone a editables los campos del formulario que estan en "disabled", entonces lo he tenido que acabar haciendo a mano la parte de poner a enable and disabled (Aunque la funcionalidad de editar me funciona perfectamente, aunque no queda tan bien estéticamente en el css): 
 
@@ -566,8 +566,7 @@ Plantilla.plantillaFormularioPersona.formulario = `
     </table>
 </form>
 `;
-
-### HU 08. Ver un listado de todos los datos de jugadores/equipos cuyo nombre cumple con un criterio de búsqueda indicado por el usuario.  (Por ejemplo: buscar todos aquellos cuyo nombre incluye “Antonio”).
+### HU 13 . HU 13 . Modificar varios de los datos a la vez de un jugador/equipo. Se deberán poder modificar al menos 3 campos además del nombre.
 
 Entonces al mostrar una persona ya me salen los campos así ahora mismo, aunque no se gurda hasta que le doy a guardar: (en sí la funcionalidad funciona, aunque no está bonita) 
 
@@ -577,6 +576,6 @@ Entonces al mostrar una persona ya me salen los campos así ahora mismo, aunque 
 <img src='/Interfaz/problema02.JPG' width='700px'/>  
 <img src='/Interfaz/problema03.JPG' width='700px'/>  
 
-### HU 13 . HU 13 . Modificar varios de los datos a la vez de un jugador/equipo. Se deberán poder modificar al menos 3 campos además del nombre.
+### HU 08. Ver un listado de todos los datos de jugadores/equipos cuyo nombre cumple con un criterio de búsqueda indicado por el usuario.  (Por ejemplo: buscar todos aquellos cuyo nombre incluye “Antonio”).
 
 <img src='/Interfaz/08JPG.JPG' width='700px'/>  
