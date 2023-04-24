@@ -441,3 +441,11 @@ https://github.com/UJA-Desarrollo-Agil/descripcion-proyecto-microservicios-perso
 El código en ese repositorio muestra una aplicación similar, pero con mucha más funcionalidad que esta plantilla: acceso a base de datos remota, listado de documentos recuperados de la BBDD, peticiones entre distintos microservicios, etc.
 
 Además, incluye documentación sobre dicho código y un vídeo descriptivo de cómo se ha realizado y cómo funciona la aplicación de ejemplo.
+
+## Resolución de la práctica 
+Tablero Trello: https://trello.com/b/PM5WVvmT/practica3
+### Capturas de Fauna 
+
+### Incremento 1 (HU 01,02)
+
+
