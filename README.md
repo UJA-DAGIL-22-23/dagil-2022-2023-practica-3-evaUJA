@@ -567,7 +567,7 @@ Plantilla.plantillaFormularioPersona.formulario = `
 </form>
 `;
 
-### HU 08 . HU 08 . Ver un listado de todos los datos de jugadores/equipos cuyo nombre cumple con un criterio de búsqueda indicado por el usuario.  (Por ejemplo: buscar todos aquellos cuyo nombre incluye “Antonio”).
+### HU 08. Ver un listado de todos los datos de jugadores/equipos cuyo nombre cumple con un criterio de búsqueda indicado por el usuario.  (Por ejemplo: buscar todos aquellos cuyo nombre incluye “Antonio”).
 
 Entonces al mostrar una persona ya me salen los campos así ahora mismo, aunque no se gurda hasta que le doy a guardar: (en sí la funcionalidad funciona, aunque no está bonita) 
 
