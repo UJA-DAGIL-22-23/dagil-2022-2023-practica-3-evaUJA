@@ -70,25 +70,25 @@ Plantilla.plantillaFormularioPersona.formulario = `
                 <td><input type="text" class="form-persona-elemento" disabled id="form-persona-id"
                         value="${Plantilla.plantillaTags.ID}" 
                         name="id_persona"/></td>
-                <td><input type="text" class="form-persona-elemento editable" disabled 
+                <td><input type="text" class="form-persona-elemento editable" 
                         id="form-persona-nombre" required value="${Plantilla.plantillaTags.NOMBRE}" 
                         name="nombre_persona"/></td>
-                <td><input type="text" class="form-persona-elemento editable" disabled 
+                <td><input type="text" class="form-persona-elemento editable" 
                         id="form-persona-apellidos" value="${Plantilla.plantillaTags.APELLIDOS}" 
                         name="apellidos_persona"/></td>
-                <td><input type="text" class="form-persona-elemento editable" disabled 
+                <td><input type="text" class="form-persona-elemento editable" 
                         id="form-persona-posicion" required value="${Plantilla.plantillaTags.POSICION}" 
                         name="posicion_persona"/></td>
                 <td><input type="text" class="form-persona-elemento"  disabled
                         id="form-persona-fechaNacimiento" required value="${Plantilla.plantillaTags.FECHADENACIMIENTO}" 
                         name="fechaNacimiento_persona"/></td>
-                          <td><input type="text" class="form-persona-elemento editable"  disabled 
+                          <td><input type="text" class="form-persona-elemento editable"   
                         id="form-persona-casaHodwats" required value="${Plantilla.plantillaTags.CASAHODWARTS}" 
                         name="casaHodwarts"/></td>
-                 <td><input type="text" class="form-persona-elemento editable" disabled 
+                 <td><input type="text" class="form-persona-elemento editable" 
                         id="form-persona-copasMundiales" required value="${Plantilla.plantillaTags.COPASMUNDIALES}" 
                         name="copasMundiales_persona"/></td>
-                <td width="20%"><input type="text" class="form-persona-elemento editable"  disabled 
+                <td width="20%"><input type="text" class="form-persona-elemento editable"   
                         id="form-persona-tipoEscoba" required value="${Plantilla.plantillaTags.TIPOESCOBA}" 
                         name="tipoEscoba_persona"/></td>
                 <td>
