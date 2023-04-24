@@ -501,10 +501,82 @@ Como podemos observar, al picharle en: "Ordenar por fecha de Nacimiento", se ord
 
 ## Incremento 2 (HU 08, 13) 
 
+En este incremento, empecé con ambos a la vez, pensé que había terminado la HU 08 antes de la HU 13, pero fue al revés, ya que me dio el siguiente bug en ultimo momento que traté de solucionar después de hacer la HU 13.
+
+dejó de funcionarme bien la parte de css de la función que pone a editables los campos del formulario que estan en "disabled", entonces lo he tenido que acabar haciendo a mano la parte de poner a enable and disabled (Aunque la funcionalidad de editar me funciona perfectamente, aunque no queda tan bien estéticamente en el css): 
+
+/**
+ * Función que permite modificar los datos de una persona
+ */
+Plantilla.editar = function () {
+    this.ocultarOpcionesSecundarias()
+    this.mostrarOcionesTerciariasEditar()
+    this.habilitarCamposEditables() //no me termina de funciónar en la implementación 
+} 
+
+Y el formulario lo he dejado así 
+// Cabecera del formulario
+Plantilla.plantillaFormularioPersona.formulario = `
+<form method='post' action=''>
+    <table width="100%" class="listado-personas">
+        <thead>
+             <th width="10%">Id</th>
+                        <th width="10%">Nombre</th>
+                        <th width="10%">Apellidos</th>
+                        <th width="10%">Posicion</th>
+                        <th width="10%">FechaDeNacimiento</th>
+                        <th width="10%">cadaHodwarts</th>
+                        <th width="10%">CopasMundiales</th>
+                         <th width="10%">TipoEscoba</th>
+                        <th width="10%">Acciones</th>
+        </thead>
+        <tbody>
+            <tr title="${Plantilla.plantillaTags.ID}">
+                <td><input type="text" class="form-persona-elemento" disabled id="form-persona-id"
+                        value="${Plantilla.plantillaTags.ID}" 
+                        name="id_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" disabled 
+                        id="form-persona-nombre" required value="${Plantilla.plantillaTags.NOMBRE}" 
+                        name="nombre_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" disabled 
+                        id="form-persona-apellidos" value="${Plantilla.plantillaTags.APELLIDOS}" 
+                        name="apellidos_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" disabled 
+                        id="form-persona-posicion" required value="${Plantilla.plantillaTags.POSICION}" 
+                        name="posicion_persona"/></td>
+                <td><input type="text" class="form-persona-elemento"  disabled
+                        id="form-persona-fechaNacimiento" required value="${Plantilla.plantillaTags.FECHADENACIMIENTO}" 
+                        name="fechaNacimiento_persona"/></td>
+                          <td><input type="text" class="form-persona-elemento editable"  disabled 
+                        id="form-persona-casaHodwats" required value="${Plantilla.plantillaTags.CASAHODWARTS}" 
+                        name="casaHodwarts"/></td>
+                 <td><input type="text" class="form-persona-elemento editable" disabled 
+                        id="form-persona-copasMundiales" required value="${Plantilla.plantillaTags.COPASMUNDIALES}" 
+                        name="copasMundiales_persona"/></td>
+                <td width="20%"><input type="text" class="form-persona-elemento editable"  disabled 
+                        id="form-persona-tipoEscoba" required value="${Plantilla.plantillaTags.TIPOESCOBA}" 
+                        name="tipoEscoba_persona"/></td>
+                <td>
+                    <div><a href="javascript:Plantilla.editar()" class="opcion-secundaria mostrar">Editar</a></div>
+                    <div><a href="javascript:Plantilla.guardar()" class="opcion-terciaria editar ocultar">Guardar</a></div>
+                    <div><a href="javascript:Plantilla.cancelar()" class="opcion-terciaria editar ocultar">Cancelar</a></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+`;
+
 ### HU 08 . HU 08 . Ver un listado de todos los datos de jugadores/equipos cuyo nombre cumple con un criterio de búsqueda indicado por el usuario.  (Por ejemplo: buscar todos aquellos cuyo nombre incluye “Antonio”).
 
-<img src='/Interfaz/03NombreAlfabeticamente.JPG' width='700px'/>  
+Entonces al mostrar una persona ya me salen los campos así ahora mismo, aunque no se gurda hasta que le doy a guardar: (en sí la funcionalidad funciona, aunque no está bonita) 
 
-### HU 13 . Ver un listado con todos los datos de todos los jugadores/equipos
+<img src='/Interfaz/modificar03.JPG' width='700px'/> 
+<img src='/Interfaz/modificar01.JPG' width='700px'/> 
+<img src='/Interfaz/problema01.JPG' width='700px'/>  
+<img src='/Interfaz/problema02.JPG' width='700px'/>  
+<img src='/Interfaz/problema03.JPG' width='700px'/>  
 
-<img src='/Interfaz/04ListadoTodo.JPG' width='700px'/>  
+### HU 13 . HU 13 . Modificar varios de los datos a la vez de un jugador/equipo. Se deberán poder modificar al menos 3 campos además del nombre.
+
+<img src='/Interfaz/08JPG.JPG' width='700px'/>  
