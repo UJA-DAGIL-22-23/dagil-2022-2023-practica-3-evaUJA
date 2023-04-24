@@ -442,10 +442,14 @@ El código en ese repositorio muestra una aplicación similar, pero con mucha m�
 
 Además, incluye documentación sobre dicho código y un vídeo descriptivo de cómo se ha realizado y cómo funciona la aplicación de ejemplo.
 
-## Resolución de la práctica 
+# Resolución de la práctica 
 Tablero Trello: https://trello.com/b/PM5WVvmT/practica3
 ### Capturas de Fauna 
+<img src='/Trello/Capturas/fauna01.JPG' width='200px'/>  
 
+<img src='/Trello/Capturas/fauna02.JPG' width='200px'/>  
+
+<img src='/Trello/Capturas/fauna03.JPG' width='200px'/>
 ### Incremento 1 (HU 01,02)
 
 
