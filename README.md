@@ -444,12 +444,17 @@ Además, incluye documentación sobre dicho código y un vídeo descriptivo de c
 
 # Resolución de la práctica 
 Tablero Trello: https://trello.com/b/PM5WVvmT/practica3
-### Capturas de Fauna 
-<img src='/Trello/Capturas/fauna01.JPG' width='200px'/>  
+## Capturas de Fauna 
+<img src='/Trello/Capturas/fauna01.JPG' width='700px'/>  
 
-<img src='/Trello/Capturas/fauna02.JPG' width='200px'/>  
+<img src='/Trello/Capturas/Fauna02.JPG' width='700px'/>  
 
-<img src='/Trello/Capturas/fauna03.JPG' width='200px'/>
-### Incremento 1 (HU 01,02)
+<img src='/Trello/Capturas/Fauna03.JPG' width='700px'/>
+
+## Incremento 1 (HU 01,02,03,04,05,06) 
+
+En mi primer incremento han estado practicamente todas las funciones de listar, ya que estas eran muy parecidas unas a otras y se me hizo relativamente facil, una vez hecho la primera seguir haciendo las demás. 
+
+### HU 01: Ver la información del autor/autora de la aplicación al pulsar en el botón “Acerca de”
 
 
