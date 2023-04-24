@@ -505,7 +505,7 @@ Como podemos observar, al picharle en: "Ordenar por fecha de Nacimiento", se ord
 <img src='/Trello/inicioIteracion2.JPG' width='700px'/>  
 
 #### A lo largo de las iteraciones se ha visto así: 
-<img src='/Trello/inicioIteracion2.JPG' width='700px'/>  
+<img src='/Trello/proceso0813.JPG' width='700px'/>  
 <img src='/Trello/penultima.JPG' width='700px'/>  
 
 #### Y al final de la iteración mi tablero Trello se vé así, con mi última historia de usuario (HU 6): 
@@ -526,7 +526,6 @@ Plantilla.editar = function () {
 
 Y el formulario lo he dejado así 
 // Cabecera del formulario
-Plantilla.plantillaFormularioPersona.formulario = `
 <form method='post' action=''>
     <table width="100%" class="listado-personas">
         <thead>
@@ -575,7 +574,7 @@ Plantilla.plantillaFormularioPersona.formulario = `
         </tbody>
     </table>
 </form>
-`;
+
 ### HU 13 . HU 13 . Modificar varios de los datos a la vez de un jugador/equipo. Se deberán poder modificar al menos 3 campos además del nombre.
 
 Entonces al mostrar una persona ya me salen los campos así ahora mismo, aunque no se gurda hasta que le doy a guardar: (en sí la funcionalidad funciona, aunque no está bonita) 
